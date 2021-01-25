@@ -1,0 +1,19 @@
+<h3>Name</h3>
+<%= @animal.name %>
+<h3>Age</h3>
+<%= @animal.age %>
+<h3>Breed</h3>
+<%= @animal.breed %>
+<h3>Microchip</h3>
+<%= @animal.microchip %>
+<h3>Microchip Number</h3>
+<%= @animal.microchip_number %>
+<h3>Microchip Notes</h3>
+<%= @animal.notes %>
+
+
+
+
+<%= link_to 'Edit', edit_animal_path(@animal) %> |
+<%= link_to 'Back', animals_path %>
+<%= link_to 'Destroy', animal_path(@animal), method: :delete, data: { confirm: 'Are you sure?' } %>

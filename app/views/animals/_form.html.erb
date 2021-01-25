@@ -1,0 +1,59 @@
+<% if animal.new_record? %>
+    <h2>New Animal</h2>
+<% else %>
+    <h2>Edit Animal</h2>
+<% end %>
+
+<%= form_with(model: animal) do |f| %>
+    <% if animal.errors.any? %>
+        <div>
+            <h2><%= pluralize(animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+
+            <ul>
+              <% animal.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+    <% end %>
+    
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div>
+        <%= f.label :age %>
+        <%= f.number_field :age %>
+    </div>
+    
+    <div>
+        <%= f.label :breed %>
+        <%= f.text_field :nbreedame %>
+    </div>
+    
+    <div>
+        <%= f.label :microchip %>
+        <%= f.check_box :microchip %>
+    </div>
+    
+    <div>
+        <%= f.label :microchip_number %>
+        <%= f.number_field :microchip_number %>
+    </div>
+
+    <div>
+        <%= f.label :notes %>
+        <%= f.text_field :notes %>
+    </div>
+
+    <div>
+        <% if animal.new_record? %>
+            <%= f.submit 'Create Animal' %>
+            <p>Don't want to create a new animal? <a href="<%=animals_path %>">Go Back</a></p>
+        <% else %>
+         <%= f.submit 'Edit Animal' %>
+            <p>Don't want to edit this animal? <a href="<%=animal_path(animal) %>">Go Back</a></p>
+        <% end %>
+    </div>
+<% end %>
