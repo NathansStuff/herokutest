@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DisplayCard from './displayCard';
-import './animal.scss'
+import './animal.scss';
 
 class Animal extends Component {
   state = {
@@ -22,11 +22,11 @@ class Animal extends Component {
         this.setState({
           animal: resp.data.data.attributes,
           dailyUpdates: resp.data.included,
-        }),
-          console.log(resp.data.data.attributes);
+        })
+          // console.log(resp.data.data.attributes);
       })
       .catch(data => {
-        console.log('error', data);
+        // console.log('error', data);
       });
   }
 
@@ -39,10 +39,7 @@ class Animal extends Component {
     return (
       <div>
         <div className='show-top'>
-          <div className='show-details'>
-            <img src={image_url} alt={name} width='50' />
-            <h1>{name}</h1>
-          </div>
+          <DisplayCard attributes={this.state.animal} />
 
           <div className='show-form'>[form will go here]</div>
         </div>
@@ -53,3 +50,8 @@ class Animal extends Component {
 }
 
 export default Animal;
+
+// <div className='show-details'>
+//             <img src={image_url} alt={name} width='50' />
+//             <h1>{name}</h1>
+//           </div>
