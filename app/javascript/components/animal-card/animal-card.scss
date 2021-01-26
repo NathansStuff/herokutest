@@ -1,0 +1,22 @@
+.card {
+    display: flex;
+    margin: 20px 50px;   
+    border-style: solid;
+}
+
+.card-left,
+.card-right {
+    width: 100%;
+}
+
+.card-left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.animal-photo img {
+    max-width: 300px;
+    max-height: 300px;
+}
