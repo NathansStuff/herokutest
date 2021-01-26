@@ -1,0 +1,15 @@
+.show-top,
+.show-details,
+.show-update,
+.show-form,
+.show-bot {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-style: solid;
+    margin: 10px 20px;
+}
+
+.show-details {
+    max-width: 40%;
+}

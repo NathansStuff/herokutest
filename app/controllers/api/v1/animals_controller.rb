@@ -6,7 +6,7 @@ module Api
                 render json: AnimalSerializer.new(animals, options).serialized_json
             end
             def show 
-                animal = Animal.find_by(params[:id])
+                animal ||= Animal.find_by(id: params[:id])
                 render json: AnimalSerializer.new(animal, options).serialized_json
             end
             def create 
