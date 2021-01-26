@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DisplayCard from './displayCard';
+import DisplayCard from '../../components/display-card/displayCard';
+import DailyUpdateForm from '../../components/daily-update-form/daily-update-form'
 import './animal.scss';
 
 class Animal extends Component {
@@ -41,7 +42,8 @@ class Animal extends Component {
         <div className='show-top'>
           <DisplayCard attributes={this.state.animal} />
 
-          <div className='show-form'>[form will go here]</div>
+          <DailyUpdateForm/>
+
         </div>
         <div className='show-bot'>[history will go here]</div>
       </div>
