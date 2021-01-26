@@ -17,7 +17,10 @@
 
 .pages h3,
 .login h3,
+.navbar-link,
 .navbar-brandname,
 .navbar-logo {
-    margin-left: 10px
+    text-decoration: none;
+    margin: auto 10px auto 0;
+    font-size: 15px;
 }
