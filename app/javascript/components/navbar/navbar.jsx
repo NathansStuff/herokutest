@@ -1,5 +1,6 @@
 import React from 'react';
 import './navbar.scss';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -19,7 +20,7 @@ const NavBar = () => {
         <div className='pages'>
           <h3>Home</h3>
           <h3>About</h3>
-          <h3>Contact</h3>
+          <Link to='/contact'>Contact</Link>
         </div>
         <div className='login'>
           <h3>Login</h3>
