@@ -1,5 +1,19 @@
 animals = Animal.create([
-     { 
+    { 
+        name: 'Willow',
+        age: 4,
+        breed: 'dont know',
+        microchip: false,
+        notes: 'is fat'
+   },
+   { 
+        name: 'Mr Beautiful',
+        age: 2,
+        breed: 'ginger',
+        microchip: false,
+        notes: 'is beautiful'
+    }, 
+    { 
          name: 'Bob',
          age: 2,
          breed: 'Siamese',

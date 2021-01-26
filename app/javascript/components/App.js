@@ -8,7 +8,7 @@ const App = () => {
     
     <Switch>
       <Route exact path="/" component={Animals} />
-      <Route exact path='/animal' component={Animal} />
+      <Route exact path='/animal/:id' component={Animal} />
     </Switch>
   );
 };
