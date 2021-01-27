@@ -1,20 +1,36 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
-import DailyUpdateForm from '../../components/daily-update-form/daily-update-form'
+import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
 import './animal.scss';
 
-class Animal extends Component {
-  state = {
-    animal: null,
-    dailyUpdate: null,
-    dailyUpdates: [],
+const Animal = props => {
+  const [animal, setAnimal] = useState({});
+  const [daily_updates, setDailyUpdate] = useState({});
+
+  // takes input to update the dailyupdate form
+  const handleChange = e => {
+    e.preventDefault();
+    setDailyUpdate(
+      Object.assign({}, daily_updates, { [e.target.name]: e.target.value })
+    );
   };
 
-  componentDidMount() {
-    // Get a specific animal from the api based on the id passed in via props
-    // Saves the data to the setAnimal object
-    const id = this.props.match.params.id;
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const animal_id = props.match.params.id;
+
+    axios.post('/api/v1/daily_updates', { daily_updates, animal_id})
+    .then( (resp) => {
+      debugger
+    })
+    .catch( data => console.log('Error', data))
+  };
+
+  // Get a specific animal from the api based on the id passed in via props
+  useEffect(() => {
+    const id = props.match.params.id;
     const url = `/api/v1/animals/${id}`;
 
     axios
@@ -23,37 +39,31 @@ class Animal extends Component {
         this.setState({
           animal: resp.data.data.attributes,
           dailyUpdates: resp.data.included,
-        })
-          // console.log(resp.data.data.attributes);
+        });
+        // console.log(resp.data.data.attributes);
       })
       .catch(data => {
         // console.log('error', data);
       });
-  }
+  });
 
-  render() {
-    const name = this.state.animal ? this.state.animal.name : 'none';
-    const image_url =
-      'https://upload.wikimedia.org/wikipedia/commons/1/15/White_Persian_Cat.jpg';
-    // const image_url = this.state.animal ? this.state.animal.image_url : null
+  let included
 
-    return (
-      <div>
-        <div className='show-top'>
-          <DisplayCard attributes={this.state.animal} />
+  return (
+    <div>
+      <div className='show-top'>
+        <DisplayCard attributes={animal} />
 
-          <DailyUpdateForm/>
-
-        </div>
-        <div className='show-bot'>[history will go here]</div>
+        <DailyUpdateForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          attributes={animal}
+          daily_updates={daily_updates}
+        />
       </div>
-    );
-  }
-}
+      <div className='show-bot'>[history will go here]</div>
+    </div>
+  );
+};
 
 export default Animal;
-
-// <div className='show-details'>
-//             <img src={image_url} alt={name} width='50' />
-//             <h1>{name}</h1>
-//           </div>
