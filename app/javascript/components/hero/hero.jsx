@@ -1,20 +1,24 @@
 import React from 'react';
 import './hero.scss';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
 const Hero = () => {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="xl">
-        <Typography component="div" className="hero" style={ 'height: 100vh; width: 100%; background-color: black; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; display: flex; justify-content: center; min-height: 600px;'} />
-      </Container>
-    </React.Fragment>
+      <section class="jumbotron text-center">
+    <div class="container">
+    <h1>Hello, world!</h1>
+    <p class="lead text-muted"></p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">Main call to action</a>
+      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+    </p>
+  </div>
+  </section>
+
   );
 };
 
 export default Hero;
+
