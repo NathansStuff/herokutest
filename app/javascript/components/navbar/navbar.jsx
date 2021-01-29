@@ -10,7 +10,7 @@ const NavBar = () => {
   return (
  
       <React.Fragment>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark static-top">
   <div className="container">
   <a className="navbar-brand" href="#">
     <img src={logo} width="30" height="30" className="d-inline-block align-top" alt=""/>
