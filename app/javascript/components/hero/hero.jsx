@@ -6,16 +6,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Hero = () => {
   return (
-      <section class="jumbotron text-center">
-    <div class="container">
-    <h1>Hello, world!</h1>
-    <p class="lead text-muted"></p>
-    <p>
-      <a href="#" class="btn btn-primary my-2">Main call to action</a>
-      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-    </p>
-  </div>
-  </section>
+    <header className="masthead">
+    <div className="container-fluid h-100">
+      <div className="row h-100 align-items-center">
+        <div className="col-12 text-center">
+          <h1 className="font-weight-light">Vertically Centered Masthead Content</h1>
+          <p className="lead">A great starter layout for a landing page</p>
+        </div>
+        <div className="col-sm-3">
+            <a href="#" className="btn btn-lg">button</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
   );
 };
