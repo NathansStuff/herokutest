@@ -1,3 +1,6 @@
+// ISSUE: CHECKBOX IN DAILY-UPDATE-FORM DOESNT CORRESPOND TO TRUE/FALSE VALUES
+
+
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
@@ -9,13 +12,15 @@ const Animal = props => {
   const [animal, setAnimal] = useState({});
   const [daily_updates, setDailyUpdates] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const [daily_update, setDailyUpdate] = useState({weight:0, ate_food: false, drank_water: false, notes: ''})
+  const [daily_update, setDailyUpdate] = useState({weight:'', ate_food: '', drank_water: '', notes: ''})
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
+    console.log(`name: `, e.target.name, 'value: ', e.target.value)
     setDailyUpdate(
       Object.assign({}, daily_update, { [e.target.name]: e.target.value })
+
     );
   };
 
@@ -64,7 +69,7 @@ const Animal = props => {
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               attributes={animal}
-              daily_updates={daily_update}
+              daily_update={daily_update}
             />
           </div>
           <div className='show-bot'>

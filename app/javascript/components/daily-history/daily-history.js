@@ -9,9 +9,6 @@ import './daily-history.scss';
 
 
 const DailyHistory = props => {
-  console.log(props.attributes);
-  console.log('&&&&&&&');
-
   const history = props.attributes;
   const list = history
     ? history.map(history => {
