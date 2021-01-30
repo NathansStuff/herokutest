@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
 import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
@@ -8,6 +8,7 @@ import DailyHistory from '../../components/daily-history/daily-history';
 const Animal = props => {
   const [animal, setAnimal] = useState({});
   const [daily_updates, setDailyUpdate] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
@@ -42,6 +43,7 @@ const Animal = props => {
         console.log('****');
         setAnimal(resp.data.data.attributes);
         setDailyUpdate(resp.data.data.relationships.daily_updates);
+        setLoaded(true);
       })
       .catch(data => {
         console.log('error', data);
@@ -53,19 +55,23 @@ const Animal = props => {
 
   return (
     <div>
-      <div className='show-top'>
-        <DisplayCard attributes={animal} />
+      {loaded && (
+        <Fragment>
+          <div className='show-top'>
+            <DisplayCard attributes={animal} />
 
-        <DailyUpdateForm
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          attributes={animal}
-          daily_updates={daily_updates}
-        />
-      </div>
-      <div className="show-bot">
-      <DailyHistory attributes={daily_updates}/>
-      </div>
+            <DailyUpdateForm
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              attributes={animal}
+              daily_updates={daily_updates}
+            />
+          </div>
+          <div className='show-bot'>
+            <DailyHistory attributes={daily_updates} />
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };
