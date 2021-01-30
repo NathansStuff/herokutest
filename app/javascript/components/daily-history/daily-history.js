@@ -3,7 +3,16 @@ import './daily-history.scss';
 
 const DailyHistory = props => {
   console.log('&&&&&&&&&&&&');
-  console.log(props);
+  console.log(props.attributes.data);
+
+  const history = props.attributes.data
+  const list = history ? history.map(history => {
+    return (
+        <tr>
+            <td>{history.id}</td>
+        </tr>
+        );
+  }) : null;
   return (
     <div>
       <table>
@@ -13,7 +22,9 @@ const DailyHistory = props => {
           <th>Drank Water</th>
           <th>Notes</th>
         </thead>
-        <tbody></tbody>
+        <tbody>
+{list}
+        </tbody>
       </table>
     </div>
   );
