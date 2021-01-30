@@ -3,6 +3,7 @@ import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
 import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
 import './animal.scss';
+import DailyHistory from '../../components/daily-history/daily-history';
 
 const Animal = props => {
   const [animal, setAnimal] = useState({});
@@ -37,10 +38,10 @@ const Animal = props => {
     axios
       .get(url)
       .then(resp => {
-        console.log(resp.data.data.relationships.daily_updates)
-        console.log('****')
-        setAnimal(resp.data.data.attributes)
-        setDailyUpdate(resp.data.data.relationships.daily_updates)
+        console.log(resp.data.data.relationships.daily_updates);
+        console.log('****');
+        setAnimal(resp.data.data.attributes);
+        setDailyUpdate(resp.data.data.relationships.daily_updates);
       })
       .catch(data => {
         console.log('error', data);
@@ -62,7 +63,9 @@ const Animal = props => {
           daily_updates={daily_updates}
         />
       </div>
-      <div className='show-bot'>[history will go here]</div>
+      <div className="show-bot">
+      <DailyHistory attributes={daily_updates}/>
+      </div>
     </div>
   );
 };
