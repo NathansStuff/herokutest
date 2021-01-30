@@ -21,11 +21,12 @@ const Animal = props => {
 
     const animal_id = props.match.params.id;
 
-    axios.post('/api/v1/daily_updates', { daily_updates, animal_id})
-    .then( (resp) => {
-      debugger
-    })
-    .catch( data => console.log('Error', data))
+    axios
+      .post('/api/v1/daily_updates', { daily_updates, animal_id })
+      .then(resp => {
+        debugger;
+      })
+      .catch(data => console.log('Error', data));
   };
 
   // Get a specific animal from the api based on the id passed in via props
@@ -36,18 +37,18 @@ const Animal = props => {
     axios
       .get(url)
       .then(resp => {
-        this.setState({
-          animal: resp.data.data.attributes,
-          dailyUpdates: resp.data.included,
-        });
-        // console.log(resp.data.data.attributes);
+        console.log(resp.data.data.relationships.daily_updates)
+        console.log('****')
+        setAnimal(resp.data.data.attributes)
+        setDailyUpdate(resp.data.data.relationships.daily_updates)
       })
       .catch(data => {
-        // console.log('error', data);
+        console.log('error', data);
+        // console.log(resp.data.data.attributes);
       });
   });
 
-  let included
+  let included;
 
   return (
     <div>
