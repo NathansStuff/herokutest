@@ -41,11 +41,10 @@ const Animal = props => {
         setDailyUpdates([...daily_updates, resp.data.data]);
         setDailyUpdate({
           weight: '',
-          ate_food: '',
-          drank_water: '',
+          ate_food: false,
+          drank_water: false,
           notes: '',
         });
-        debugger
       })
       .catch(data => console.log('Error', data));
   };
