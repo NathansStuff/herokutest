@@ -7,14 +7,15 @@ import DailyHistory from '../../components/daily-history/daily-history';
 
 const Animal = props => {
   const [animal, setAnimal] = useState({});
-  const [daily_updates, setDailyUpdate] = useState({});
+  const [daily_updates, setDailyUpdates] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [daily_update, setDailyUpdate] = useState({weight:0, ate_food: false, drank_water: false, notes: ''})
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
     setDailyUpdate(
-      Object.assign({}, daily_updates, { [e.target.name]: e.target.value })
+      Object.assign({}, daily_update, { [e.target.name]: e.target.value })
     );
   };
 
@@ -24,7 +25,7 @@ const Animal = props => {
     const animal_id = props.match.params.id;
 
     axios
-      .post('/api/v1/daily_updates', { daily_updates, animal_id })
+      .post('/api/v1/daily_updates', { ...daily_update, animal_id })
       .then(resp => {
         debugger;
       })
@@ -42,7 +43,7 @@ const Animal = props => {
         // console.log(resp.data.included);
         // console.log('****');
         setAnimal(resp.data.data.attributes);
-        setDailyUpdate(resp.data.included);
+        setDailyUpdates(resp.data.included);
         setLoaded(true);
       })
       .catch(data => {
@@ -63,7 +64,7 @@ const Animal = props => {
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               attributes={animal}
-              daily_updates={daily_updates}
+              daily_updates={daily_update}
             />
           </div>
           <div className='show-bot'>

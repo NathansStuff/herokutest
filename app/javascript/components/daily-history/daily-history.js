@@ -1,6 +1,13 @@
 import React from 'react';
 import './daily-history.scss';
 
+
+// const DailyHistory = props => {
+//   return <div></div>
+// }
+//   export default DailyHistory;
+
+
 const DailyHistory = props => {
   console.log(props.attributes);
   console.log('&&&&&&&');
