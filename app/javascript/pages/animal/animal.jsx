@@ -39,15 +39,14 @@ const Animal = props => {
     axios
       .get(url)
       .then(resp => {
-        console.log(resp.data.data.relationships.daily_updates);
+        console.log(resp.data.data.relationships);
         console.log('****');
         setAnimal(resp.data.data.attributes);
-        setDailyUpdate(resp.data.data.relationships.daily_updates);
+        setDailyUpdate(resp.data.data.relationships);
         setLoaded(true);
       })
       .catch(data => {
         console.log('error', data);
-        // console.log(resp.data.data.attributes);
       });
   });
 

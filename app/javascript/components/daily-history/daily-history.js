@@ -2,15 +2,17 @@ import React from 'react';
 import './daily-history.scss';
 
 const DailyHistory = props => {
-  console.log('&&&&&&&&&&&&');
-  console.log(props.attributes.data);
 
   const history = props.attributes.data
   const list = history ? history.map(history => {
+    console.log('&&&&***')
+    console.log(history)
     return (
         <tr>
             <td>{history.id}</td>
-        </tr>
+
+
+            </tr>
         );
   }) : null;
   return (
