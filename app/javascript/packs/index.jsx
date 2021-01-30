@@ -4,6 +4,7 @@ import App from '../routing/App';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavBar from '../components/navbar/navbar';
 
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
       <Router>
