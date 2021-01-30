@@ -1,6 +1,5 @@
 // ISSUE: CHECKBOX IN DAILY-UPDATE-FORM DOESNT CORRESPOND TO TRUE/FALSE VALUES
 
-
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
@@ -12,15 +11,19 @@ const Animal = props => {
   const [animal, setAnimal] = useState({});
   const [daily_updates, setDailyUpdates] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const [daily_update, setDailyUpdate] = useState({weight:'', ate_food: '', drank_water: '', notes: ''})
+  const [daily_update, setDailyUpdate] = useState({
+    weight: '',
+    ate_food: false,
+    drank_water: false,
+    notes: '',
+  });
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
-    console.log(`name: `, e.target.name, 'value: ', e.target.value)
+    console.log(`name: `, e.target.name, 'value: ', e.target.value);
     setDailyUpdate(
       Object.assign({}, daily_update, { [e.target.name]: e.target.value })
-
     );
   };
 
@@ -30,9 +33,19 @@ const Animal = props => {
     const animal_id = props.match.params.id;
 
     axios
+      // const csrfToken = document.querySelector('[name=csrf-token]').content
+      // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
       .post('/api/v1/daily_updates', { ...daily_update, animal_id })
       .then(resp => {
-        debugger;
+        setDailyUpdates([...daily_updates, resp.data.data]);
+        setDailyUpdate({
+          weight: '',
+          ate_food: '',
+          drank_water: '',
+          notes: '',
+        });
+        debugger
       })
       .catch(data => console.log('Error', data));
   };
