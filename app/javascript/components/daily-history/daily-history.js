@@ -19,10 +19,10 @@ const DailyHistory = props => {
     <div>
       <table>
         <thead>
-          <th>Date</th>
-          <th>Ate Food</th>
-          <th>Drank Water</th>
-          <th>Notes</th>
+          <tr>Date</tr>
+          <tr>Ate Food</tr>
+          <tr>Drank Water</tr>
+          <tr>Notes</tr>
         </thead>
         <tbody>
 {list}

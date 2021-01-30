@@ -48,7 +48,7 @@ const Animal = props => {
       .catch(data => {
         console.log('error', data);
       });
-  });
+  }, []);
 
   let included;
 

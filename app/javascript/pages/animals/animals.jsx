@@ -15,7 +15,7 @@ const Animals = () => {
         console.log(resp);
       })
       .catch(resp => console.log(resp), [animals.length]);
-  });
+  }, []);
 
   const list = animals.map( animal => {
       return (
