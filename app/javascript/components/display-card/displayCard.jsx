@@ -21,6 +21,7 @@ function getData(props) {
 
 const DisplayCard = props => {
   const data = getData(props);
+  console.log(props);
   return (
     <div className='displayCard'>
       <div className='display-card-image'>
@@ -66,6 +67,20 @@ const DisplayCard = props => {
           </div>
           <div>
             <p>{data.microchip_number}</p>
+          </div>
+        </div>
+        <div className='display-card-buttons'>
+          <div>
+            <p>
+              <button>Edit</button>
+            </p>
+          </div>
+          <div>
+            <p>
+              <button onClick={props.handleDestroy.bind(this, props.id)}>
+                Delete
+              </button>
+            </p>
           </div>
         </div>
       </div>

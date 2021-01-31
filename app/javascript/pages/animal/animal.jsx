@@ -7,9 +7,9 @@ import DailyUpdateForm from '../../components/daily-update-form/daily-update-for
 import './animal.scss';
 import DailyHistory from '../../components/daily-history/daily-history';
 
-
 const Animal = props => {
   const [animal, setAnimal] = useState({});
+  const [id, setId] = useState({});
   const [daily_updates, setDailyUpdates] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [daily_update, setDailyUpdate] = useState({
@@ -18,6 +18,17 @@ const Animal = props => {
     drank_water: false,
     notes: '',
   });
+
+  const handleAnimalDestroy = (id, e) => {
+    e.preventDefault();
+    console.log(id);
+    axios
+      .delete(`/api/v1/animals/${id}`)
+      .then(data => {
+        
+      })
+      .catch(data => console.log('Error', data));
+  };
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
@@ -48,7 +59,7 @@ const Animal = props => {
 
   const handleDestroy = (id, e) => {
     e.preventDefault();
-    console.log(id)
+    console.log(id);
     axios
       .delete(`/api/v1/daily_updates/${id}`)
       .then(data => {
@@ -65,12 +76,11 @@ const Animal = props => {
   useEffect(() => {
     const id = props.match.params.id;
     const url = `/api/v1/animals/${id}`;
+    setId(id);
 
     axios
       .get(url)
       .then(resp => {
-        // console.log(resp.data.included);
-        // console.log('****');
         setAnimal(resp.data.data.attributes);
         setDailyUpdates(resp.data.included);
         setLoaded(true);
@@ -87,7 +97,11 @@ const Animal = props => {
       {loaded && (
         <Fragment>
           <div className='show-top'>
-            <DisplayCard attributes={animal} />
+            <DisplayCard
+              attributes={animal}
+              handleDestroy={handleAnimalDestroy}
+              id={id}
+            />
 
             <DailyUpdateForm
               handleChange={handleChange}

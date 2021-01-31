@@ -29,10 +29,12 @@ module Api
                 end
             end
             def destroy 
-                animal = Animal.find_by(params[:id])
+                p 'in destroyer'
 
+                animal = Animal.find(params[:id])
                 if animal.destroy
                     head :no_content
+                    p 'yes'
                 else
                     render json: { error: animal.errors.messages }, status: 422
                 end
