@@ -1,3 +1,5 @@
+// Redirect after animal is created???
+
 import React, { useState } from 'react';
 import './new-animal.scss';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
@@ -24,20 +26,19 @@ const NewAnimal = () => {
   // posts data to api backend
   const handleSubmit = e => {
     e.preventDefault();
-    
-    console.log(newAnimal.microchip)
-
-    newAnimal.microchip_number === '' ? setNewAnimal({microchip: false}) : setNewAnimal({microchip: true})
+    newAnimal.microchip_number === ''
+      ? setNewAnimal({ microchip: false })
+      : setNewAnimal({ microchip: true });
 
     axios
       .post('/api/v1/animals', { ...newAnimal })
-      .then(resp => {
-          console.log('yay')
-      })
+      .then(resp => {})
       .catch(data => console.log('Error', data));
   };
 
-  return <NewAnimalForm handleChange={handleChange} handleSubmit={handleSubmit}/>;
+  return (
+    <NewAnimalForm handleChange={handleChange} handleSubmit={handleSubmit} />
+  );
 };
 
 export default NewAnimal;
