@@ -1,47 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './new-animal.scss';
+import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
+import axios from 'axios';
 
 const NewAnimal = () => {
-  return (
-    <div className='new-animal-wrapper'>
-      <div className='new-animal-form'>
-        <div className='new-animal-title'>
-          <h3>New Animal</h3>
-        </div>
-        <form>
-          <div className='new-animal-field'>
-            <input name='name' placeholder='Name'></input>
-          </div>
-          <div className='new-animal-field'>
-            <input name='age' type='number' placeholder='Age'></input>
-          </div>
-          <div className='new-animal-field'>
-            <input name='breed' placeholder='Breed'></input>
-          </div>
-          <div className='new-animal-field'>
-            <input
-              name='microchip_number'
-              type='number'
-              placeholder='Microchip Number'
-            ></input>
-          </div>
-          <div className='new-animal-field'>
-            <textarea
-              name='notes'
-              rows='10'
-              cols='50'
-              placeholder='Notes: 
-            
-            eg. Medication, Desexed date'
-            ></textarea>
-          </div>
-          <div>
-            <button type='submit'>Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+  const [newAnimal, setNewAnimal] = useState({
+    name: '',
+    age: '',
+    breed: '',
+    microchip: false,
+    microchip_number: '',
+    notes: '',
+  });
+
+  // takes input to update the newAnimal form
+  const handleChange = e => {
+    e.preventDefault();
+    setNewAnimal(
+      Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
+    );
+  };
+
+  // posts data to api backend
+  const handleSubmit = e => {
+    e.preventDefault();
+    
+    console.log(newAnimal.microchip)
+
+    newAnimal.microchip_number === '' ? setNewAnimal({microchip: false}) : setNewAnimal({microchip: true})
+
+    axios
+      .post('/api/v1/animals', { ...newAnimal })
+      .then(resp => {
+          console.log('yay')
+      })
+      .catch(data => console.log('Error', data));
+  };
+
+  return <NewAnimalForm handleChange={handleChange} handleSubmit={handleSubmit}/>;
 };
 
 export default NewAnimal;

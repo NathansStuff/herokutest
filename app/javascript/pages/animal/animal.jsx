@@ -21,7 +21,6 @@ const Animal = props => {
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
-    console.log(`name: `, e.target.name, 'value: ', e.target.value);
     setDailyUpdate(
       Object.assign({}, daily_update, { [e.target.name]: e.target.value })
     );
