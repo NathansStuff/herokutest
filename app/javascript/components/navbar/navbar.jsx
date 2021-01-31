@@ -23,8 +23,8 @@ const NavBar = () => {
           <Link to='/contact' className='navbar-link'>Contact</Link>
         </div>
         <div className='login'>
-          <h3>Login</h3>
-          <h3>Signup</h3>
+          <Link to='/login' className='navbar-link'>Login</Link>
+          <Link to='/signup' className='navbar-link'>Signup</Link>
         </div>
       </div>
     </div>
