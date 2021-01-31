@@ -5,6 +5,7 @@ import Animal from '../pages/animal/animal';
 import Contact from '../pages/contact/contact';
 import HomePage from '../pages/home/home';
 import SearchPage from '../pages/search/search';
+import NewAnimal from '../pages/new-animal/new-animal'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Route exact path='/contact' component={Contact} />
       <Route exact path='/animals' component={Animals} />
       <Route exact path='/search' component={SearchPage} />
+      <Route exact path='/newanimal' component={NewAnimal} />
     </Switch>
   );
 };
