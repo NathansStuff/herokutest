@@ -6,13 +6,18 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import logo from 'images/logo.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
-  
+const Styles = {
+  navBackground: {
+    color: '#FFFFFF'
+  }
+
+};
 
 const NavBar = () => {
   return (
  
       <React.Fragment>
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark static-top">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark static-top" style={Styles.navBackground}>
   <div className="container">
   <a className="navbar-brand" href="#">
     <img src={logo} width="30" height="30" className="d-inline-block align-top" alt=""/>
@@ -28,17 +33,17 @@ const NavBar = () => {
                 <span className="sr-only">(current)</span>
               </a>
         </li>
-        <li className="nav-item">
+        <li className="nav-item ">
           <a className="nav-link" href="#">About</a>
         </li>
-        <li className="nav-item">
+        <li className="nav-item pl-2">
           <a className="nav-link" href="#">Contact</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Login</a>
+        <li className="nav-item pl-5 ml-2 ">
+          <a className="btn rounded-pill shadow-sm text-light bg-info login" href="#">Login</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Signup</a>
+        <li className="nav-item pl-2">
+          <a className="btn rounded-pill shadow-sm text-light signup" href="#">Signup</a>
         </li>
       </ul>
     </div>
