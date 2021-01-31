@@ -1,6 +1,8 @@
 import React from 'react';
 import './hero.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import background from 'images/index-background.jpg'
 
 const styles = {
@@ -26,6 +28,7 @@ const Hero = () => {
             <div className="text-white px-5">
               <h4 className="mb-3">Welcome!</h4>
               <p className='lead'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus laudantium in eaque cumque. Maiores laboriosam, esse quos hic inventore qui.</p>
+              <a href="#" className="btn btn-md text-white px-5 rounded-pill shadow-sm">Learn More</a>
               <a className="btn btn-outline-light btn-lg px-3" href="#!" role="button">Signup</a>
             </div>
         </div>

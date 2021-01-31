@@ -1,7 +1,9 @@
 import React from 'react';
 import './navbar.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from 'images/logo.svg'
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import logo from 'images/logo.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
   
