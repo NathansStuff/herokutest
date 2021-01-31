@@ -12,10 +12,9 @@ const Animals = () => {
       .get('./api/v1/animals.json')
       .then(resp => {
         setAnimals(resp.data.data)
-        console.log(resp);
       })
       .catch(resp => console.log(resp), [animals.length]);
-  });
+  }, []);
 
   const list = animals.map( animal => {
       return (
