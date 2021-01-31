@@ -7,6 +7,7 @@ import DailyUpdateForm from '../../components/daily-update-form/daily-update-for
 import './animal.scss';
 import DailyHistory from '../../components/daily-history/daily-history';
 
+
 const Animal = props => {
   const [animal, setAnimal] = useState({});
   const [daily_updates, setDailyUpdates] = useState({});
@@ -32,9 +33,6 @@ const Animal = props => {
     const animal_id = props.match.params.id;
 
     axios
-      // const csrfToken = document.querySelector('[name=csrf-token]').content
-      // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
-
       .post('/api/v1/daily_updates', { ...daily_update, animal_id })
       .then(resp => {
         setDailyUpdates([...daily_updates, resp.data.data]);
@@ -44,6 +42,21 @@ const Animal = props => {
           drank_water: false,
           notes: '',
         });
+      })
+      .catch(data => console.log('Error', data));
+  };
+
+  const handleDestroy = (id, e) => {
+    e.preventDefault();
+    console.log(id)
+    axios
+      .delete(`/api/v1/daily_updates/${id}`)
+      .then(data => {
+        const included = [...daily_updates];
+        const index = included.findIndex(data => data.id == id);
+        included.splice(index, 1);
+
+        setDailyUpdates(included);
       })
       .catch(data => console.log('Error', data));
   };
@@ -84,7 +97,10 @@ const Animal = props => {
             />
           </div>
           <div className='show-bot'>
-            <DailyHistory attributes={daily_updates} />
+            <DailyHistory
+              attributes={daily_updates}
+              handleDestroy={handleDestroy}
+            />
           </div>
         </Fragment>
       )}
