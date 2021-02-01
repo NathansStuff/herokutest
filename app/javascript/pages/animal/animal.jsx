@@ -14,30 +14,35 @@ const Animal = props => {
   const [loaded, setLoaded] = useState(false);
   const [daily_update, setDailyUpdate] = useState({
     weight: '',
-    ate_food: false,
-    drank_water: false,
+    ate_food: '',
+    drank_water: '',
     notes: '',
   });
 
+  // posts destroy to animal controller
   const handleAnimalDestroy = (id, e) => {
     e.preventDefault();
     console.log(id);
     axios
       .delete(`/api/v1/animals/${id}`)
-      .then(data => {
-        
-      })
+      .then(data => {})
       .catch(data => console.log('Error', data));
   };
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
+
+    if (e.type === 'checkbox') {
+      console.log('checkbox')
+    } 
+
     setDailyUpdate(
       Object.assign({}, daily_update, { [e.target.name]: e.target.value })
     );
   };
 
+  // posts create to daily updates
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -57,6 +62,7 @@ const Animal = props => {
       .catch(data => console.log('Error', data));
   };
 
+  // daily update destroyer
   const handleDestroy = (id, e) => {
     e.preventDefault();
     console.log(id);
@@ -89,8 +95,6 @@ const Animal = props => {
         console.log('error', data);
       });
   }, []);
-
-  let included;
 
   return (
     <div>
