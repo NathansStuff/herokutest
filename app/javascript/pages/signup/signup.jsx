@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Registration from '../../components/auth/registration';
 
+import Login from  '../../components/login/login';
+
 import './signup.scss';
 
 export default class Signup extends Component {
@@ -21,6 +23,7 @@ export default class Signup extends Component {
         <div>
             This is the signup page
             <Registration handleSuccesfulAuth={this.handleSuccesfulAuth} />
+            <Login />
 
             Status: {this.props.loggedInStatus}
         </div>

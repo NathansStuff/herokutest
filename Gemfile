@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'bootstrap-sass'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -48,3 +49,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rack-cors', :require => 'rack/cors'
+gem "font-awesome-rails", "~> 4.7"

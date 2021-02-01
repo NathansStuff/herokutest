@@ -14,6 +14,7 @@ export default class HomePage extends Component {
         <Hero />
         <About />
       </Fragment>
+      Status: {this.props.loggedInStatus}
     </div>
     );
   };

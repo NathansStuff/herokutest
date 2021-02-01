@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from 'react';
+// ISSUE: CHECKBOX IN DAILY-UPDATE-FORM DOESNT CORRESPOND TO TRUE/FALSE VALUES
+
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
 import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
 import './animal.scss';
+import DailyHistory from '../../components/daily-history/daily-history';
 
 const Animal = props => {
   const [animal, setAnimal] = useState({});
-  const [daily_updates, setDailyUpdate] = useState({});
+  const [daily_updates, setDailyUpdates] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  const [daily_update, setDailyUpdate] = useState({
+    weight: '',
+    ate_food: false,
+    drank_water: false,
+    notes: '',
+  });
 
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
     setDailyUpdate(
-      Object.assign({}, daily_updates, { [e.target.name]: e.target.value })
+      Object.assign({}, daily_update, { [e.target.name]: e.target.value })
     );
   };
 
@@ -21,11 +31,21 @@ const Animal = props => {
 
     const animal_id = props.match.params.id;
 
-    axios.post('/api/v1/daily_updates', { daily_updates, animal_id})
-    .then( (resp) => {
-      debugger
-    })
-    .catch( data => console.log('Error', data))
+    axios
+      // const csrfToken = document.querySelector('[name=csrf-token]').content
+      // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+      .post('/api/v1/daily_updates', { ...daily_update, animal_id })
+      .then(resp => {
+        setDailyUpdates([...daily_updates, resp.data.data]);
+        setDailyUpdate({
+          weight: '',
+          ate_food: false,
+          drank_water: false,
+          notes: '',
+        });
+      })
+      .catch(data => console.log('Error', data));
   };
 
   // Get a specific animal from the api based on the id passed in via props
@@ -36,32 +56,38 @@ const Animal = props => {
     axios
       .get(url)
       .then(resp => {
-        this.setState({
-          animal: resp.data.data.attributes,
-          dailyUpdates: resp.data.included,
-        });
-        // console.log(resp.data.data.attributes);
+        // console.log(resp.data.included);
+        // console.log('****');
+        setAnimal(resp.data.data.attributes);
+        setDailyUpdates(resp.data.included);
+        setLoaded(true);
       })
       .catch(data => {
-        // console.log('error', data);
+        console.log('error', data);
       });
-  });
+  }, []);
 
-  let included
+  let included;
 
   return (
     <div>
-      <div className='show-top'>
-        <DisplayCard attributes={animal} />
+      {loaded && (
+        <Fragment>
+          <div className='show-top'>
+            <DisplayCard attributes={animal} />
 
-        <DailyUpdateForm
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          attributes={animal}
-          daily_updates={daily_updates}
-        />
-      </div>
-      <div className='show-bot'>[history will go here]</div>
+            <DailyUpdateForm
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              attributes={animal}
+              daily_update={daily_update}
+            />
+          </div>
+          <div className='show-bot'>
+            <DailyHistory attributes={daily_updates} />
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };

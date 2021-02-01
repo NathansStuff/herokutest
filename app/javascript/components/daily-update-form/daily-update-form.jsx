@@ -11,19 +11,19 @@ const DailyUpdateForm = props => {
       </div>
       <form onSubmit={props.handleSubmit}>
         <div className='daily-field'>
-          <input type='number' name='weight' placeholder='Weight' onChange={props.handleChange} value={props.daily_updates.weight}></input>
+          <input type='number' name='weight' placeholder='Weight' onChange={props.handleChange} value={props.daily_update.weight}></input>
         </div>
         <div className='daily-field'>
-          <input type='checkbox' name='ate_food' onChange={props.handleChange} value={props.daily_updates.ate_food}></input>
+          <input type='checkbox' name='ate_food' onChange={props.handleChange} value={props.daily_update.ate_food}></input>
           <label>Ate Food</label>
         </div>
         <div className='daily-field'>
-          <input type='checkbox' name='drank_water' onChange={props.handleChange} value={props.daily_updates.drank_water}></input>
+          <input type='checkbox' name='drank_water' onChange={props.handleChange} value={props.daily_update.drank_water}></input>
           <label>Drank Water</label>
         </div>
         <div className='daily-field'>
           <label>Notes</label>
-          <textarea name='notes' rows='10' cols='50' onChange={props.handleChange} value={props.daily_updates.notes}></textarea>
+          <textarea name='notes' rows='10' cols='50' onChange={props.handleChange} value={props.daily_update.notes}></textarea>
         </div>
         <div>
           <button type='submit'>Submit</button>
