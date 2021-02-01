@@ -6,6 +6,7 @@ import DisplayCard from '../../components/display-card/displayCard';
 import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
 import './animal.scss';
 import DailyHistory from '../../components/daily-history/daily-history';
+import { useHistory } from "react-router-dom";
 
 const Animal = props => {
   const [animal, setAnimal] = useState({});
@@ -19,13 +20,17 @@ const Animal = props => {
     notes: '',
   });
 
+  let history = useHistory()
+
   // posts destroy to animal controller
   const handleAnimalDestroy = (id, e) => {
     e.preventDefault();
-    console.log(id);
+    
     axios
       .delete(`/api/v1/animals/${id}`)
-      .then(data => {})
+      .then(data => {
+        history.push('/animals')
+      })
       .catch(data => console.log('Error', data));
   };
 
