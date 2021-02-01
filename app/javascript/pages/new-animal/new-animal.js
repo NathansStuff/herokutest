@@ -5,7 +5,8 @@ import './new-animal.scss';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import axios from 'axios';
 
-const NewAnimal = () => {
+const NewAnimal = props => {
+  const handleClose = props.handleClose;
   const [newAnimal, setNewAnimal] = useState({
     name: '',
     age: '',
@@ -37,7 +38,7 @@ const NewAnimal = () => {
   };
 
   return (
-    <NewAnimalForm handleChange={handleChange} handleSubmit={handleSubmit} />
+    <NewAnimalForm handleChange={handleChange} handleSubmit={handleSubmit} handleClose={handleClose}/>
   );
 };
 

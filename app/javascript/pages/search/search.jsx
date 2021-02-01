@@ -2,10 +2,13 @@ import React, { useState, useEffect, Fragment } from 'react';
 import './search.scss';
 import axios from 'axios';
 import SearchCard from '../../components/search-card/search-card';
+import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
+import Button from '@material-ui/core/Button';
 
 const SearchPage = () => {
   const [animals, setAnimals] = useState([]);
   const [searchField, setSearchField] = useState([]);
+  const [open, setOpen] = useState(false);
   // Get all animals from api
   // Update animals in state as they return
   useEffect(() => {
@@ -18,15 +21,57 @@ const SearchPage = () => {
   }, []);
 
   const filteredAnimals = animals.filter(animal =>
-    animal.attributes.name.toLowerCase().includes(searchField.length > 0 ? searchField.toLowerCase() : '')
+    animal.attributes.name
+      .toLowerCase()
+      .includes(searchField.length > 0 ? searchField.toLowerCase() : '')
   );
 
   const list = filteredAnimals.map(animal => {
     return <SearchCard animal={animal} />;
   });
 
+  // Code for the new animal form
+  const [newAnimal, setNewAnimal] = useState({
+    name: '',
+    age: '',
+    breed: '',
+    microchip: false,
+    microchip_number: '',
+    notes: '',
+  });
+
+  // takes input to update the newAnimal form
+  const handleChange = e => {
+    e.preventDefault();
+    setNewAnimal(
+      Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
+    );
+  };
+
+  // posts data to api backend
+  const handleSubmit = e => {
+    e.preventDefault();
+    newAnimal.microchip_number === ''
+      ? setNewAnimal({ microchip: false })
+      : setNewAnimal({ microchip: true });
+
+    axios
+      .post('/api/v1/animals', { ...newAnimal })
+      .then(resp => {})
+      .catch(data => console.log('Error', data));
+  };
+
   const onChange = e => {
     setSearchField(e.target.value);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = e => {
+    e.preventDefault();
+    setOpen(false);
   };
 
   return (
@@ -44,12 +89,15 @@ const SearchPage = () => {
 
       <div className='right-panel'>
         <div className='right-panel-header'>
-          <p>NEW ANIMAL</p>
-          <input
-            type='search'
-            placeholder='search animals'
-            onChange={e => onChange(e)}
-          ></input>
+          <Button variant='outlined' color='primary' onClick={handleClickOpen}>
+            Add New
+          </Button>
+          <NewAnimalForm
+            open={open}
+            handleClose={handleClose}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
         </div>
         <div className='right-panel-body'>{list}</div>
       </div>
