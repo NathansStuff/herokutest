@@ -14,7 +14,7 @@ const NewAnimalForm = props => {
     return <div></div>;
   }
   return (
-    <Dialog className='new-animal-wrapper'>
+    <div className='new-animal-wrapper'>
       <div className='new-animal-form'>
         <div className='new-animal-title'>
           <div></div>
@@ -68,7 +68,7 @@ const NewAnimalForm = props => {
           </div>
         </form>
       </div>
-    </Dialog>
+    </div>
   );
 };
 
