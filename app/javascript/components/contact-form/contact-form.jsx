@@ -23,16 +23,20 @@ class ContactForm extends Component {
     const { name, email, subject, message } = this.state;
     let templateParams = {
       from_name: email,
-      to_name: 'n.odonnell@hotmail.com',
+      to_name: 'cybeleproject93@gmail.com',
       subject: subject,
-      message_html: { ...name, ...message },
+      message: message,
     };
-    emailjs.send(
-      'hotmail',
-      'template_XXXXXXXX',
-      templateParams,
-      'user_XXXXXXXXXXXXXXXXXXXX'
-    );
+    emailjs
+      .send(
+        'service_oj6ecd1',
+        'template_wb5x5je',
+        templateParams,
+        'user_vTT2nk4pHgmYk78U5flbL'
+      )
+      .then(result => {
+        console.log(result);
+      });
     this.resetForm();
   }
   resetForm() {

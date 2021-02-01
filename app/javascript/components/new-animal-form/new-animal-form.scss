@@ -1,5 +1,5 @@
 .new-animal-wrapper {
-    // display: flex;
+    z-index: 1;
 }
 
 .new-animal-form {
@@ -16,6 +16,8 @@
 
 .new-animal-title {
     text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .new-animal-field {
