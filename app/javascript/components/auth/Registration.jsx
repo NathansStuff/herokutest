@@ -23,7 +23,8 @@ export default class Registration extends Component {
         )
     }
     handleSubmit(event) {
-        axios.post( "http://localhost:3000/registrations", {
+        axios.post( "http://localhost:3000/registrations", 
+        {
             user: {
                 email: this.state.email,
                 password: this.state.password,
@@ -31,11 +32,15 @@ export default class Registration extends Component {
                 }
             },
             {withCredentials: true}
-            ).then(response => {
-                console.log("registration response", response);
+            )
+            .then(response => {
+                if (response.data.statusText === "OK"){
+                    this.props.handleSuccessfulAuth(response.data);
+                }
             }).catch(error => {
                 console.log("registration error", error);
             });
+    
         event.preventDefault();
     }
 

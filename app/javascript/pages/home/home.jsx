@@ -1,15 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import './home.scss';
 import Hero from '../../components/hero/hero';
 import About from '../../components/about/about';
 
-const HomePage = () => {
-  return (
-    <Fragment>
-      <Hero />
-      <About />
-    </Fragment>
-  );
-};
+export default class HomePage extends Component {
+  constructor(props){
+    super(props);
+  }
+  render() {
+    return (
+    <div>
+      <Fragment>
+        <Hero />
+        <About />
+      </Fragment>
+    </div>
+    );
+  };
 
-export default HomePage;
+}
