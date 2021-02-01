@@ -5,6 +5,7 @@ import SearchCard from '../../components/search-card/search-card';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
 
+
 const SearchPage = () => {
   const [animals, setAnimals] = useState([]);
   const [searchField, setSearchField] = useState([]);
@@ -92,17 +93,18 @@ const SearchPage = () => {
           <Button variant='outlined' color='primary' onClick={handleClickOpen}>
             Add New
           </Button>
+
+          <input
+            type='search'
+            placeholder='search animals'
+            onChange={e => onChange(e)}
+          ></input>
           <NewAnimalForm
             open={open}
             handleClose={handleClose}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
           />
-          <input
-            type='search'
-            placeholder='search animals'
-            onChange={e => onChange(e)}
-          ></input>
         </div>
         <div className='right-panel-body'>{list}</div>
       </div>
