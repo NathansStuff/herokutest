@@ -7,7 +7,7 @@ export default class Signup extends Component {
     constructor(props){
         super(props);
 
-        this.handleSuccesfulAuth = this.handleSuccessfulAuth.bind(this);
+        this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
     }
 
     handleSuccessfulAuth(data) {
@@ -16,11 +16,14 @@ export default class Signup extends Component {
     }
 
 
+
+  
+
   render(){
     return( 
         <div>
             This is the signup page
-            <Registration handleSuccesfulAuth={this.handleSuccessfulAuth} />
+            <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
             <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
 
             Status: {this.props.loggedInStatus}
