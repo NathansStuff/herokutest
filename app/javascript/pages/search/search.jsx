@@ -98,6 +98,11 @@ const SearchPage = () => {
             handleChange={handleChange}
             handleSubmit={handleSubmit}
           />
+          <input
+            type='search'
+            placeholder='search animals'
+            onChange={e => onChange(e)}
+          ></input>
         </div>
         <div className='right-panel-body'>{list}</div>
       </div>
