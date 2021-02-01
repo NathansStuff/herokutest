@@ -19,23 +19,24 @@ export default class Login extends Component {
         this.setState({
            [event.target.name]: event.target.value 
         }
-        )
+        );
     }
     handleSubmit(event) {
+        const {email, password} = this.state;
         axios.post( "http://localhost:3000/sessions", 
-        {
+        { 
             user: {
-                email: this.setState.email,
-                password: this.setState.password,
+                email: email,
+                password: password
                 }
             },
             {withCredentials: true}
             )
             .then(response => {
                 console.log("login res", response)
-                // if (response.data.statusText === "OK"){
-                //     this.props.handleSuccessfulAuth(response.data);
-                // }
+                if (response.data.logged_in){
+                    this.props.handleSuccessfulAuth(response.data);
+                }
             }).catch(error => {
                 console.log("login error", error);
             });

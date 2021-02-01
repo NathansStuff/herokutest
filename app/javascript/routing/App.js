@@ -37,7 +37,7 @@ export default class App extends Component {
             <Route exact 
               path='/' 
               render={props => (
-             <HomePage {...props}  loggedInStatus={this.state.loggedInStatus} />
+             <HomePage {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
             )} />
             <Route exact path='/animal/:id' component={Animal} />
             <Route exact path='/contact' component={Contact} />

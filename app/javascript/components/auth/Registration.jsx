@@ -11,19 +11,28 @@ export default class Registration extends Component {
             password: "",
             password_confirmation: "",
             registrationErrors: ""
-        }
+        };
+
+        this.handleSuccesfulAuth = this.handleSuccesfulAuth.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         
+    }
+
+    
+    handleSuccesfulAuth(data) {
+        this.props.handleLogin(data);
+        this.props.history.push("/");
     }
 
     handleChange(event) {
         this.setState({
            [event.target.name]: event.target.value 
         }
-        )
+        );
     }
     handleSubmit(event) {
+       
         axios.post( "http://localhost:3000/registrations", 
         {
             user: {
@@ -36,10 +45,11 @@ export default class Registration extends Component {
             )
             .then(response => {
                 console.log("registration res", response)
-                if (response.data.status === "OK"){
-                    this.props.handleSuccessfulAuth(response.data);
+                if (response.statusText === "OK"){
+                   this.props.handleSuccesfulAuth(response.data);
                 }
-            }).catch(error => {
+            })
+            .catch(error => {
                 console.log("registration error", error);
             });
     
