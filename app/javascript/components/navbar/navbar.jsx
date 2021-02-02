@@ -40,10 +40,13 @@ const NavBar = () => {
           <a className="nav-link" href="#">Contact</a>
         </li>
         <li className="nav-item pl-5 ml-2 ">
-          <a className="btn rounded-pill shadow-sm text-light bg-info login" href="#">Login</a>
+          <a className="btn rounded-pill shadow-sm text-light bg-info login" href="/login">Login</a>
         </li>
         <li className="nav-item pl-2">
-          <a className="btn rounded-pill shadow-sm text-light signup" href="#">Signup</a>
+          <a className="btn rounded-pill shadow-sm text-light signup" href="/signup">Signup</a>
+        </li>
+        <li className="nav-item pl-2">
+       
         </li>
       </ul>
     </div>
