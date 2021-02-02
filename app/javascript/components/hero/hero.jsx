@@ -11,7 +11,7 @@ const styles = {
         width: '100vw',
         backgroundSize: 'cover',
         backgroundPositionY: '70%',
-        overflow: 'hidden',
+        position: 'relative',
         backgroundRepeat:'no-repeat',
         backgroundImage: `url(${background})`
 

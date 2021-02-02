@@ -2,14 +2,12 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Animals from '../pages/animals/animals';
 import Animal from '../pages/animal/animal';
-import Contact from '../pages/contact/contact';
 import HomePage from '../pages/home/home';
 import Signin from '../pages/singin/signin';
 import Signup from '../pages/signup/signup';
 import SearchPage from '../pages/search/search';
 import NewAnimal from '../pages/new-animal/new-animal'
 import axios from 'axios';
-
 
 export default class App extends Component {
   constructor() {

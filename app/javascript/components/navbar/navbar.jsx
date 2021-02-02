@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './navbar.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import logo from 'images/logo.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Modal } from 'react';
 
 const Styles = {
   navBackground: {
@@ -14,8 +15,12 @@ const Styles = {
 };
 
 const NavBar = () => {
+  const [showPopup, setShowPopup] = useState(false)
+
+  const openPopup = () => {
+    setShowPopup(prev => !prev)
+  }
   return (
- 
       <React.Fragment>
     <nav className="navbar navbar-expand-md navbar-dark bg-dark static-top" style={Styles.navBackground}>
   <div className="container">
@@ -47,13 +52,20 @@ const NavBar = () => {
         </li>
         <li className="nav-item pl-2">
        
+          <a className="btn rounded-pill shadow-sm text-light bg-info login" onClick={openPopup}>Login</a>
+        </li>
+        <li className="nav-item pl-2">
+          <a className="btn rounded-pill shadow-sm text-light signup" onClick={openPopup}>Signup</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-      </React.Fragment>
-    );
+</React.Fragment>
+
+      
+    
+  )
 };
 
 export default NavBar;
