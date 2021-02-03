@@ -6,7 +6,8 @@ import DisplayCard from '../../components/display-card/displayCard';
 import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
 import './animal.scss';
 import DailyHistory from '../../components/daily-history/daily-history';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
 
 const Animal = props => {
   const [animal, setAnimal] = useState({});
@@ -20,16 +21,38 @@ const Animal = props => {
     notes: '',
   });
 
-  let history = useHistory()
+  // edit animal form data
+  // ---------------------------
+  const [openEditAnimal, setEditAnimal] = useState(false);
+  const [editAnimalForm, setEditAnimalForm] = useState({
+    name: '',
+    age: '',
+    breed: '',
+    microchip: '',
+    microchip_number: '',
+  });
+
+  const handleEditAnimalOpen = () => {
+    setEditAnimal(true);
+  };
+
+  const handleEditAnimalClose = e => {
+    e.preventDefault();
+    setEditAnimal(false);
+  };
+
+  // ---------------------------
+
+  let history = useHistory();
 
   // posts destroy to animal controller
   const handleAnimalDestroy = (id, e) => {
     e.preventDefault();
-    
+
     axios
       .delete(`/api/v1/animals/${id}`)
       .then(data => {
-        history.push('/animals')
+        history.push('/animals');
       })
       .catch(data => console.log('Error', data));
   };
@@ -39,8 +62,8 @@ const Animal = props => {
     e.preventDefault();
 
     if (e.type === 'checkbox') {
-      console.log('checkbox')
-    } 
+      console.log('checkbox');
+    }
 
     setDailyUpdate(
       Object.assign({}, daily_update, { [e.target.name]: e.target.value })
@@ -105,11 +128,19 @@ const Animal = props => {
     <div>
       {loaded && (
         <Fragment>
+          <EditAnimalForm
+            open={openEditAnimal}
+            handleClose={handleEditAnimalClose}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            animal={animal}
+          />
           <div className='show-top'>
             <DisplayCard
               attributes={animal}
               handleDestroy={handleAnimalDestroy}
               id={id}
+              edit={handleEditAnimalOpen}
             />
 
             <DailyUpdateForm

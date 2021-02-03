@@ -72,7 +72,7 @@ const DisplayCard = props => {
         <div className='display-card-buttons'>
           <div>
             <p>
-              <button>Edit</button>
+              <button onClick={props.edit}>Edit</button>
             </p>
           </div>
           <div>
