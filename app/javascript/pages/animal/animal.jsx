@@ -32,10 +32,10 @@ const Animal = props => {
     microchip_number: '',
   });
 
+
+
   const handleEditAnimalOpen = () => {
     setEditAnimal(true);
-    console.log('**')
-    console.log(editAnimalForm);
   };
 
   // takes input to update the newAnimal form
@@ -52,9 +52,10 @@ const Animal = props => {
     editAnimalForm.microchip_number === ''
       ? setEditAnimalForm({ microchip: false })
       : setEditAnimalForm({ microchip: true });
-
+    console.log(editAnimalForm);
+    console.log('**')
     axios
-      .post(`/api/v1/animals/${id}`, { ...editAnimalForm })
+      .put(`/api/v1/animals/${id}`, { ...editAnimalForm })
       .then(resp => {})
       .catch(data => console.log('Error', data));
   };
