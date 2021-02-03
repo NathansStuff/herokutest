@@ -57,7 +57,6 @@ class ContactForm extends Component {
       <div className='contact-wrapper'>
         <div className='contact-top'>
           <h3>Contact Us</h3>
-          <h3>X</h3>
         </div>
         <div className='contact-form'>
           <form onSubmit={this.handleSubmit.bind(this)}>
