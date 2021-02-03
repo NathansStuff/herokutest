@@ -25,7 +25,7 @@ const Animal = props => {
   // ------------------------------------------------------
   const [openEditAnimal, setEditAnimal] = useState(false);
   const [editAnimalForm, setEditAnimalForm] = useState({
-    name: '',
+    name: 'no name',
     age: '',
     breed: '',
     microchip: '',
@@ -50,8 +50,6 @@ const Animal = props => {
     editAnimalForm.microchip_number === ''
       ? setEditAnimalForm({ microchip: false })
       : setEditAnimalForm({ microchip: true });
-    console.log(editAnimalForm);
-    console.log('**')
     axios
       .put(`/api/v1/animals/${id}`, { ...editAnimalForm })
       .then(resp => {})
@@ -128,6 +126,7 @@ const Animal = props => {
       .catch(data => console.log('Error', data));
   };
 
+  //===========================================================================
   // Get a specific animal from the api based on the id passed in via props
   useEffect(() => {
     const id = props.match.params.id;
@@ -140,12 +139,33 @@ const Animal = props => {
         setAnimal(resp.data.data.attributes);
         setDailyUpdates(resp.data.included);
         setLoaded(true);
+
+        // setEditAnimalForm(resp.data.data.attributes);
+
+        // setEditAnimalForm(
+        //   Object.assign({}, editAnimalForm, { name: 'new name' })
+        // );
+
+        // const name = resp.data.data.attributes.name;
+        // setEditAnimalForm({
+        //   'name': 'new name!',
+        //   age: 8,
+        //   breed: '',
+        //   microchip: '',
+        //   microchip_number: '',
+        // });
+        // console.log('******');
+        // console.log(resp.data.data.attributes.name);
+        // console.log(editAnimalForm.age);
+        // console.log('&&&&&&');
+        // debugger
       })
+      
       .catch(data => {
         console.log('error', data);
       });
   }, []);
-
+  //===========================================================================
   return (
     <div>
       {loaded && (
