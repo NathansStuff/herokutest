@@ -32,8 +32,6 @@ const Animal = props => {
     microchip_number: '',
   });
 
-
-
   const handleEditAnimalOpen = () => {
     setEditAnimal(true);
   };

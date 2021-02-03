@@ -20,7 +20,7 @@ const EditAnimalForm = props => {
               <label>Name</label>
               <input
                 name='name'
-                value={props.animal.name}
+                placeholder={props.animal.name}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -30,7 +30,7 @@ const EditAnimalForm = props => {
               <input
                 name='age'
                 type='number'
-                value={props.animal.age}
+                placeholder={props.animal.age}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -39,7 +39,7 @@ const EditAnimalForm = props => {
 
               <input
                 name='breed'
-                value={props.animal.breed}
+                placeholder={props.animal.breed}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -49,7 +49,7 @@ const EditAnimalForm = props => {
               <input
                 name='microchip'
                 type='checkbox'
-                value={props.animal.microchip}
+                placeholder={props.animal.microchip}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -59,7 +59,7 @@ const EditAnimalForm = props => {
               <input
                 name='microchip_number'
                 type='number'
-                value={props.animal.microchip_number}
+                placeholder={props.animal.microchip_number}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -70,7 +70,7 @@ const EditAnimalForm = props => {
                 name='notes'
                 rows='10'
                 cols='50'
-                value={props.animal.notes}
+                placeholder={props.animal.notes}
                 onChange={props.handleChange}
               ></textarea>
             </div>
