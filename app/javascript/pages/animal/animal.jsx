@@ -22,7 +22,7 @@ const Animal = props => {
   });
 
   // edit animal form data
-  // ---------------------------
+  // ------------------------------------------------------
   const [openEditAnimal, setEditAnimal] = useState(false);
   const [editAnimalForm, setEditAnimalForm] = useState({
     name: '',
@@ -34,6 +34,29 @@ const Animal = props => {
 
   const handleEditAnimalOpen = () => {
     setEditAnimal(true);
+    console.log('**')
+    console.log(editAnimalForm);
+  };
+
+  // takes input to update the newAnimal form
+  const handleEditAnimalFormChange = e => {
+    e.preventDefault();
+    setEditAnimalForm(
+      Object.assign({}, editAnimalForm, { [e.target.name]: e.target.value })
+    );
+  };
+
+  // posts data to api backend
+  const handleEditAnimalFormSubmit = e => {
+    e.preventDefault();
+    editAnimalForm.microchip_number === ''
+      ? setEditAnimalForm({ microchip: false })
+      : setEditAnimalForm({ microchip: true });
+
+    axios
+      .post('/api/v1/animals', { ...editAnimalForm })
+      .then(resp => {})
+      .catch(data => console.log('Error', data));
   };
 
   const handleEditAnimalClose = e => {
@@ -41,7 +64,7 @@ const Animal = props => {
     setEditAnimal(false);
   };
 
-  // ---------------------------
+  // ------------------------------------------------------
 
   let history = useHistory();
 
@@ -131,8 +154,8 @@ const Animal = props => {
           <EditAnimalForm
             open={openEditAnimal}
             handleClose={handleEditAnimalClose}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handleChange={handleEditAnimalFormChange}
+            handleSubmit={handleEditAnimalFormSubmit}
             animal={animal}
           />
           <div className='show-top'>
