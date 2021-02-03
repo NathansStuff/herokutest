@@ -10,27 +10,11 @@ import { useHistory } from 'react-router-dom';
 import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
 
 const Animal = props => {
-  const [animal, setAnimal] = useState({});
-  const [id, setId] = useState({});
-  const [daily_updates, setDailyUpdates] = useState({});
-  const [loaded, setLoaded] = useState(false);
-  const [daily_update, setDailyUpdate] = useState({
-    weight: '',
-    ate_food: '',
-    drank_water: '',
-    notes: '',
-  });
-
-  // edit animal form data
-  // ------------------------------------------------------
+  // ================================================================================================
+  // EDIT ANIMAL
+  // ================================================================================================
   const [openEditAnimal, setEditAnimal] = useState(false);
-  const [editAnimalForm, setEditAnimalForm] = useState({
-    name: 'no name',
-    age: '',
-    breed: '',
-    microchip: '',
-    microchip_number: '',
-  });
+  const [editAnimalForm, setEditAnimalForm] = useState({});
 
   const handleEditAnimalOpen = () => {
     setEditAnimal(true);
@@ -61,8 +45,9 @@ const Animal = props => {
     setEditAnimal(false);
   };
 
-  // ------------------------------------------------------
-
+  // ================================================================================================
+  // DESTROY ANIMAL
+  // ================================================================================================
   let history = useHistory();
 
   // posts destroy to animal controller
@@ -77,6 +62,16 @@ const Animal = props => {
       .catch(data => console.log('Error', data));
   };
 
+  // ===============================================================================================
+  // DAILY UPDATE FORM
+  // ================================================================================================
+  const [daily_updates, setDailyUpdates] = useState({});
+  const [daily_update, setDailyUpdate] = useState({
+    weight: '',
+    ate_food: '',
+    drank_water: '',
+    notes: '',
+  });
   // takes input to update the dailyupdate form
   const handleChange = e => {
     e.preventDefault();
@@ -125,8 +120,14 @@ const Animal = props => {
       })
       .catch(data => console.log('Error', data));
   };
+  // ================================================================================================
+  // SHOW ANIMAL
+  // SET ANIMAL
+  // ================================================================================================
+  const [id, setId] = useState({});
+  const [animal, setAnimal] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
-  //===========================================================================
   // Get a specific animal from the api based on the id passed in via props
   useEffect(() => {
     const id = props.match.params.id;
@@ -139,6 +140,7 @@ const Animal = props => {
         setAnimal(resp.data.data.attributes);
         setDailyUpdates(resp.data.included);
         setLoaded(true);
+        setEditAnimalForm(resp.data.data.attributes)
 
         // setEditAnimalForm(resp.data.data.attributes);
 
@@ -148,24 +150,27 @@ const Animal = props => {
 
         // const name = resp.data.data.attributes.name;
         // setEditAnimalForm({
-        //   'name': 'new name!',
+        //   name: 'new name!',
         //   age: 8,
         //   breed: '',
         //   microchip: '',
         //   microchip_number: '',
         // });
-        // console.log('******');
-        // console.log(resp.data.data.attributes.name);
-        // console.log(editAnimalForm.age);
-        // console.log('&&&&&&');
-        // debugger
+        console.log('******');
+        console.log(resp.data.data.attributes);
+        console.log(editAnimalForm);
+        // console.log(editAnimalForm.attributes.name)
+        console.log(animal)
+        console.log('&&&&&&');
       })
-      
+
       .catch(data => {
         console.log('error', data);
       });
   }, []);
-  //===========================================================================
+  // ================================================================================================
+  // DISPLAY
+  // ================================================================================================
   return (
     <div>
       {loaded && (
