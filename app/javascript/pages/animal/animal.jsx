@@ -54,7 +54,7 @@ const Animal = props => {
       : setEditAnimalForm({ microchip: true });
 
     axios
-      .post('/api/v1/animals', { ...editAnimalForm })
+      .post(`/api/v1/animals/${id}`, { ...editAnimalForm })
       .then(resp => {})
       .catch(data => console.log('Error', data));
   };
