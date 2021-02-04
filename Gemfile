@@ -6,7 +6,9 @@ ruby '2.7.1'
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
