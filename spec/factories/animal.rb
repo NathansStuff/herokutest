@@ -1,11 +1,13 @@
 FactoryBot.define do
     factory :animal do
-      name {'Test Animal'}
+      sequence :name do |n|
+        "Animal no #{n}"
+      end
       age {3}
       breed {'Test breed'}
-      microchip { true }
-      microchip_number { 12345 }
-      notes { 'test note' }
-    end
+      microchip {false}
+      microchip_number {123}
+      notes {'Test note'}
+  end
   end
   

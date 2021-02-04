@@ -1,14 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Animal, type: :model do
-  subject { described_class.new(
-    name: 'Test Animal',
-    age: 5,
-    breed: 'tiger',
-    microchip: false,           # not required
-    microchip_number: '',       # not required
-    notes: 'will eat you'       # not required
-  )}
+  subject { FactoryBot.build(:animal) }
   
   context 'validations' do
     it 'is valid with valid attributes' do
@@ -24,6 +17,11 @@ RSpec.describe Animal, type: :model do
         subject.age = nil
         expect(subject).to_not be_valid
     end
+
+    it 'is not valid with an negative age' do
+      subject.age = -1
+      expect(subject).to_not be_valid
+  end
     
     it 'is not valid without a breed' do
         subject.breed = nil
@@ -31,4 +29,8 @@ RSpec.describe Animal, type: :model do
     end
 
   end
+
+
+
+
 end

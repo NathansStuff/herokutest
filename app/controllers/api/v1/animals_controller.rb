@@ -16,7 +16,7 @@ module Api
                 if animal.save
                     render json: AnimalSerializer.new(animal).serialized_json
                 else
-                    render json: { error: animal.errors.messages }, status: 422
+                    render json: { error: animal.errors.full_messages }, status: 422
                 end
             end
             def update 
