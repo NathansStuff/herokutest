@@ -20,7 +20,8 @@ module Api
                 end
             end
             def update 
-                animal = Animal.find_by(params[:id])
+                p 'in the update method'
+                animal ||= Animal.find_by(id: params[:id])
 
                 if animal.update(animal_params)
                     render json: AnimalSerializer.new(animal, options).serialized_json
@@ -29,12 +30,9 @@ module Api
                 end
             end
             def destroy 
-                p 'in destroyer'
-
                 animal = Animal.find(params[:id])
                 if animal.destroy
                     head :no_content
-                    p 'yes'
                 else
                     render json: { error: animal.errors.messages }, status: 422
                 end

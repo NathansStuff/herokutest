@@ -1,0 +1,29 @@
+### Index method
+GET http://localhost:3000/api/v1/animals
+
+### Create new animal
+POST http://localhost:3000/api/v1/animals
+Content-Type: application/json
+
+{
+    "name": "new animal",
+    "age": 1,
+    "breed": "6:00am",
+    "microchip": false,
+    "microchip_number": "",
+    "notes": "Does update work?"
+}
+
+
+### Update animal 1
+PUT http://localhost:3000/api/v1/animals/1
+Content-Type: application/json
+
+{
+    "name": "new animal",
+    "age": 1,
+    "breed": "6:00am",
+    "microchip": false,
+    "microchip_number": "",
+    "notes": "Does update work?"
+}
