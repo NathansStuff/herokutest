@@ -20,7 +20,7 @@ const EditAnimalForm = props => {
               <label>Name</label>
               <input
                 name='name'
-                placeholder={props.animal.name}
+                value={props.animal.name}
                 onChange={props.handleChange}
               ></input>
             </div>

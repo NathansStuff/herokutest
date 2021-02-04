@@ -10,9 +10,9 @@ const DailyHistory = props => {
   const history = props.attributes;
   const list = props.attributes
     ? history.map(history => {
-        const ate_food = history.attributes.ate_food === true ? '✅' : '❌';
+        const ate_food = history.attributes.ate_food ? '✅' : '❌';
         const drank_water =
-          history.attributes.drank_water === true ? '✅' : '❌';
+          history.attributes.drank_water ? '✅' : '❌';
         return (
           <tr>
             <th>Date placeholder</th>

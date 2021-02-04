@@ -46,7 +46,7 @@ const Animal = props => {
   };
 
   // ================================================================================================
-  // DESTROY ANIMAL
+  // DELETE ANIMAL
   // ================================================================================================
   let history = useHistory();
 
@@ -62,27 +62,36 @@ const Animal = props => {
       .catch(data => console.log('Error', data));
   };
 
-  // ===============================================================================================
+  // ================================================================================================
   // DAILY UPDATE FORM
   // ================================================================================================
   const [daily_updates, setDailyUpdates] = useState({});
   const [daily_update, setDailyUpdate] = useState({
     weight: '',
-    ate_food: '',
-    drank_water: '',
+    ate_food: false,
+    drank_water: false,
     notes: '',
   });
   // takes input to update the dailyupdate form
   const handleChange = e => {
-    e.preventDefault();
 
-    if (e.type === 'checkbox') {
-      console.log('checkbox');
+    if (e.target.name === 'ate_food') {
+      if (daily_update.ate_food == false) {
+        setDailyUpdate(Object.assign({}, daily_update, { ate_food: true }));
+      } else {
+        setDailyUpdate(Object.assign({}, daily_update, { ate_food: false }));
+      }
+    } else if (e.target.name === 'drank_water') {
+      if (daily_update.drank_water == false) {
+        setDailyUpdate(Object.assign({}, daily_update, { drank_water: true }));
+      } else {
+        setDailyUpdate(Object.assign({}, daily_update, { drank_water: false }));
+      }
+    } else {
+      setDailyUpdate(
+        Object.assign({}, daily_update, { [e.target.name]: e.target.value })
+      );
     }
-
-    setDailyUpdate(
-      Object.assign({}, daily_update, { [e.target.name]: e.target.value })
-    );
   };
 
   // posts create to daily updates
@@ -103,6 +112,11 @@ const Animal = props => {
         });
       })
       .catch(data => console.log('Error', data));
+
+    var ate_food = document.getElementById('ate_food');
+    var drank_water = document.getElementById('drank_water');
+    ate_food.checked = false;
+    drank_water.checked = false;
   };
 
   // daily update destroyer
@@ -140,28 +154,7 @@ const Animal = props => {
         setAnimal(resp.data.data.attributes);
         setDailyUpdates(resp.data.included);
         setLoaded(true);
-        setEditAnimalForm(resp.data.data.attributes)
-
-        // setEditAnimalForm(resp.data.data.attributes);
-
-        // setEditAnimalForm(
-        //   Object.assign({}, editAnimalForm, { name: 'new name' })
-        // );
-
-        // const name = resp.data.data.attributes.name;
-        // setEditAnimalForm({
-        //   name: 'new name!',
-        //   age: 8,
-        //   breed: '',
-        //   microchip: '',
-        //   microchip_number: '',
-        // });
-        console.log('******');
-        console.log(resp.data.data.attributes);
-        console.log(editAnimalForm);
-        // console.log(editAnimalForm.attributes.name)
-        console.log(animal)
-        console.log('&&&&&&');
+        setEditAnimalForm(resp.data.data.attributes);
       })
 
       .catch(data => {
@@ -180,7 +173,7 @@ const Animal = props => {
             handleClose={handleEditAnimalClose}
             handleChange={handleEditAnimalFormChange}
             handleSubmit={handleEditAnimalFormSubmit}
-            animal={animal}
+            animal={editAnimalForm}
           />
           <div className='show-top'>
             <DisplayCard
