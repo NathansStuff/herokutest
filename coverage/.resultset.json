@@ -1,0 +1,323 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/nathanodonnell/Dev/cybeleproject/app/models/animal.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/helpers/animals_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/helpers/contact_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/helpers/home_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/api/v1/animals_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          0,
+          null,
+          1,
+          2,
+          null,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          1,
+          2,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/serializers/animal_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/serializers/daily_update_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/models/daily_update.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/models/user.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/sessions_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/home_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/api/v1/daily_updates_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/concerns/current_user_concern.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/controllers/registrations_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/channels/application_cable/connection.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/nathanodonnell/Dev/cybeleproject/app/channels/application_cable/channel.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1612429093
+  }
+}

@@ -50,7 +50,7 @@ RSpec.describe "Animals", type: :request do
 
     context 'when the animal is invalid' do
       before(:example) do
-        @animal_params = FactoryBot.attributes_for(:animal, :invalid)
+        @animal_params = FactoryBot.attributes_for(:invalid_animal)
         post api_v1_animals_path, params: {animal: @animal_params}
         @json_response = JSON.parse(response.body)
       end
