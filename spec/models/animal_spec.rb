@@ -30,7 +30,4 @@ RSpec.describe Animal, type: :model do
 
   end
 
-
-
-
 end
