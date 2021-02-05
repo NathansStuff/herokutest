@@ -29,12 +29,19 @@ const Animal = props => {
   // posts data to api backend
   const handleEditAnimalFormSubmit = e => {
     e.preventDefault();
+    const id = props.match.params.id;
     editAnimalForm.microchip_number === ''
       ? setEditAnimalForm({ microchip: false })
       : setEditAnimalForm({ microchip: true });
     axios
       .put(`/api/v1/animals/${id}`, { ...editAnimalForm })
-      .then(resp => {})
+      .then(data => {
+        setEditAnimal(false);
+        history.push('/');
+      })
+      .then(data => {
+        history.push(`/animal/${id}`);
+      })
       .catch(data => console.log('Error', data));
   };
 
@@ -72,7 +79,6 @@ const Animal = props => {
   });
   // takes input to update the dailyupdate form
   const handleChange = e => {
-
     if (e.target.name === 'ate_food') {
       if (daily_update.ate_food == false) {
         setDailyUpdate(Object.assign({}, daily_update, { ate_food: true }));

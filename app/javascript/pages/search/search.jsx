@@ -4,8 +4,12 @@ import axios from 'axios';
 import SearchCard from '../../components/search-card/search-card';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router-dom';
+
 
 const SearchPage = () => {
+  let history = useHistory();
+
   const [animals, setAnimals] = useState([]);
   const [searchField, setSearchField] = useState([]);
   const [open, setOpen] = useState(false);
@@ -59,10 +63,9 @@ const SearchPage = () => {
     axios
       .post('/api/v1/animals', { ...newAnimal })
       .then(resp => {
+        history.push(`/animal/${resp.data.data.id}`)
       })
       .catch(data => console.log('Error', data));
-
-      // history.push(url)
     };
 
   const onChange = e => {
