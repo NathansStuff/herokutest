@@ -14,6 +14,7 @@ const DailyUpdateForm = props => {
       <form onSubmit={props.handleSubmit}>
         <div className='daily-field'>
           <input
+            id='update-number'
             type='number'
             name='weight'
             placeholder='Weight'
@@ -44,6 +45,7 @@ const DailyUpdateForm = props => {
         <div className='daily-field'>
           <label>Notes</label>
           <textarea
+            id='update-notes'
             name='notes'
             rows='10'
             cols='50'
@@ -52,7 +54,7 @@ const DailyUpdateForm = props => {
           ></textarea>
         </div>
         <div>
-          <button type='submit'>Submit</button>
+          <button type='submit' id='update-submit'>Submit</button>
         </div>
       </form>
     </div>
