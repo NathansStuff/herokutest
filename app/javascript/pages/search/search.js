@@ -50,7 +50,7 @@ const SearchPage = () => {
     setNewAnimal(
       Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
     );
-    console.log(newAnimal)
+    console.log(newAnimal);
   };
 
   // const handleFile = e => {
@@ -66,15 +66,13 @@ const SearchPage = () => {
 
   const handleFile = e => {
     e.preventDefault();
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     // setSelectedFile(file)
     // console.log(selectedFile)
-    setNewAnimal(
-      { 
-          ...newAnimal, 
-          photo: file 
-      }
-  );
+    setNewAnimal({
+      ...newAnimal,
+      photo: file,
+    });
 
     // setNewAnimal(
     //   Object.assign({}, newAnimal, { [e.target.name]: e.target.files[0] })
@@ -94,8 +92,32 @@ const SearchPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    axios
-      .post('/api/v1/animals', { ...newAnimal })
+    const formData = new FormData();
+    formData.append('animal[name]', newAnimal.name);
+    formData.append('animal[age]', newAnimal.age);
+    formData.append('animal[breed]', newAnimal.breed);
+    formData.append('animal[microchip]', newAnimal.microchip);
+    formData.append('animal[microchip_number]', newAnimal.microchip_number);
+    formData.append('animal[notes]', newAnimal.notes);
+    formData.append('animal[photo]', newAnimal.photo);
+
+    // axios({
+    //   method: 'post',
+    //   url: '/api/v1/animals',
+    //   data: formData,
+    //   headers: {
+    //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+    //   },
+    // })
+    $.ajax({
+      url: '/api/v1/animals',
+      method: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+    })
+
+      // .post('/api/v1/animals', { ...formData })
       .then(resp => {
         history.push(`/animal/${resp.data.data.id}`);
       })

@@ -12,7 +12,7 @@ module Api
             end
             def create 
                 animal = Animal.new(animal_params)
-
+                debugger
                 if animal.save
                     render json: AnimalSerializer.new(animal).serialized_json
                 else
