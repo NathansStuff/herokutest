@@ -1,5 +1,3 @@
-// ISSUE: CHECKBOX IN DAILY-UPDATE-FORM DOESNT CORRESPOND TO TRUE/FALSE VALUES
-
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
@@ -57,7 +55,7 @@ const Animal = props => {
     axios
       .delete(`/api/v1/animals/${id}`)
       .then(data => {
-        history.push('/animals');
+        history.push('/');
       })
       .catch(data => console.log('Error', data));
   };
@@ -129,9 +127,9 @@ const Animal = props => {
         const included = [...daily_updates];
         const index = included.findIndex(data => data.id == id);
         included.splice(index, 1);
-
         setDailyUpdates(included);
       })
+      // .then(response => this.props.history.push('/search'))
       .catch(data => console.log('Error', data));
   };
   // ================================================================================================

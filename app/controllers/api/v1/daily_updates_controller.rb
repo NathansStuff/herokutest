@@ -6,6 +6,7 @@ module Api
                 daily_update = animal.daily_updates.new(daily_updates_params)
                 if daily_update.save 
                     render json: DailyUpdateSerializer.new(daily_update).serialized_json
+                    
                 else
                     render json: { error: update.erros.messages }, status: 422
                 end

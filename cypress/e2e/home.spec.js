@@ -9,17 +9,3 @@ describe("home", () => {
     })
   })
   
-
-  /*
-
-  describe('Home Page', () => {
-    it('successfully loads', () => {
-        cy.visit('http://www.flexi-desks.com/login')
-        cy.get('#email').type('test@email').should('have.value', 'test@email')
-        cy.get('#password').type('123456').should('have.value', '123456')
-        cy.get('[type="checkbox"]').check()
-        cy.get('.MuiButtonBase-root').click({multiple: true })
-    })
-})
-
-  */

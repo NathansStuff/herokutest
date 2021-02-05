@@ -51,15 +51,19 @@ const SearchPage = () => {
   // posts data to api backend
   const handleSubmit = e => {
     e.preventDefault();
+    // const url = `/animal/1`
     newAnimal.microchip_number === ''
       ? setNewAnimal({ microchip: false })
       : setNewAnimal({ microchip: true });
 
     axios
       .post('/api/v1/animals', { ...newAnimal })
-      .then(resp => {})
+      .then(resp => {
+      })
       .catch(data => console.log('Error', data));
-  };
+
+      // history.push(url)
+    };
 
   const onChange = e => {
     setSearchField(e.target.value);
