@@ -36,7 +36,6 @@ const Animal = props => {
     axios
       .put(`/api/v1/animals/${id}`, { ...editAnimalForm })
       .then(data => {
-        setEditAnimal(false);
         history.push('/');
       })
       .then(data => {
