@@ -7,13 +7,4 @@ describe "GET homepage", :type => :feature do
     puts " Yay, we reached the homepage!! "
   end
 
-  describe "GET searchpage", :type => :feature do
-    it 'loads the searchpage' do
-      visit('http://127.0.0.1:3000/search')
-      find_button ("Add New")
-      puts " Yay, we reached the search page!! "
-    end
-  end
-
-
 end

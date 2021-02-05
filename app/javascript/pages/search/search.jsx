@@ -89,9 +89,9 @@ const SearchPage = () => {
 
       <div className='right-panel'>
         <div className='right-panel-header'>
-          <Button variant='outlined' color='primary' onClick={handleClickOpen}>
+          <button variant='outlined' color='primary' onClick={handleClickOpen} id='Add New'>
             Add New
-          </Button>
+          </button>
 
           <input
             type='search'
