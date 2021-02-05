@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.6.0",
+    "cypress": "^6.4.0",
     "jquery": "^3.5.1",
     "mdb-ui-kit": "^3.2.0",
     "mdbootstrap": "^4.19.2",
@@ -21,13 +22,18 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "reactstrap": "^8.9.0",
     "reactjs-popup": "^2.0.4",
+    "reactstrap": "^8.9.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
     "emailjs-com": "^2.6.4",
+    "start-server-and-test": "^1.12.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "cypress": "cypress open",
+    "e2e": "start-server-and-test 'BROWSER=none yarn start' http://localhost:8080 'yarn cypress'"
   }
 }

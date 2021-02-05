@@ -89,7 +89,7 @@ const SearchPage = () => {
 
       <div className='right-panel'>
         <div className='right-panel-header'>
-          <button variant='outlined' color='primary' onClick={handleClickOpen} id='Add New'>
+          <button variant='outlined' color='primary' onClick={handleClickOpen} id='Addnew'>
             Add New
           </button>
 

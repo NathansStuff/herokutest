@@ -25,6 +25,7 @@ const NewAnimalForm = props => {
             <div className='new-animal-field'>
               <input
                 name='name'
+                id='new-animal-name'
                 placeholder='Name'
                 onChange={props.handleChange}
               ></input>
@@ -32,6 +33,7 @@ const NewAnimalForm = props => {
             <div className='new-animal-field'>
               <input
                 name='age'
+                id='new-animal-age'
                 type='number'
                 placeholder='Age'
                 onChange={props.handleChange}
@@ -40,6 +42,7 @@ const NewAnimalForm = props => {
             <div className='new-animal-field'>
               <input
                 name='breed'
+                id='new-animal-breed'
                 placeholder='Breed'
                 onChange={props.handleChange}
               ></input>
@@ -47,6 +50,7 @@ const NewAnimalForm = props => {
             <div className='new-animal-field'>
               <input
                 name='microchip_number'
+                id='new-animal-microchip-number'
                 type='number'
                 placeholder='Microchip Number'
                 onChange={props.handleChange}
@@ -55,6 +59,7 @@ const NewAnimalForm = props => {
             <div className='new-animal-field'>
               <textarea
                 name='notes'
+                id='new-animal-notes'
                 rows='10'
                 cols='50'
                 placeholder='Notes: 
@@ -64,7 +69,7 @@ const NewAnimalForm = props => {
               ></textarea>
             </div>
             <div>
-              <button type='submit'>Submit</button>
+              <button type='submit' id='new-animal-submit'>Submit</button>
             </div>
           </form>
         </div>
