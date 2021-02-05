@@ -39,7 +39,7 @@ module Api
             end
             private
             def animal_params
-                params.require(:animal).permit(:name, :age, :breed, :microchip, :microchip_number, :notes)
+                params.require(:animal).permit(:name, :age, :breed, :microchip, :microchip_number, :notes, :photo)
             end
             def options
                 @options ||= { include: %i[daily_updates] }
