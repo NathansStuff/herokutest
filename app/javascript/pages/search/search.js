@@ -6,7 +6,6 @@ import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 
-
 const SearchPage = () => {
   let history = useHistory();
 
@@ -42,6 +41,7 @@ const SearchPage = () => {
     microchip: false,
     microchip_number: '',
     notes: '',
+    photo: null,
   });
 
   // takes input to update the newAnimal form
@@ -50,23 +50,57 @@ const SearchPage = () => {
     setNewAnimal(
       Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
     );
+    console.log(newAnimal)
+  };
+
+  // const handleFile = e => {
+  //   e.preventDefault();
+  //   setNewAnimal(
+  //     Object.assign({}, newAnimal, { [e.target.name]: e.target.files[0] })
+  //   );
+  //   console.log(newAnimal)
+  //   debugger
+  // };
+
+  // const [selectedFile, setSelectedFile] = useState(null)
+
+  const handleFile = e => {
+    e.preventDefault();
+    const file = e.target.files[0]
+    // setSelectedFile(file)
+    // console.log(selectedFile)
+    setNewAnimal(
+      { 
+          ...newAnimal, 
+          photo: file 
+      }
+  );
+
+    // setNewAnimal(
+    //   Object.assign({}, newAnimal, { [e.target.name]: e.target.files[0] })
+    // ) // doesnt work
+
+    // setNewAnimal(() => ({name: 'help'}))
+
+    // setNewAnimal({ name: 'fclk me' });
+
+    // console.log(e.currentTarget.files[0]);
+    console.log(newAnimal);
+    // console.log(e.target.name)
+    // debugger
   };
 
   // posts data to api backend
   const handleSubmit = e => {
     e.preventDefault();
-    // const url = `/animal/1`
-    newAnimal.microchip_number === ''
-      ? setNewAnimal({ microchip: false })
-      : setNewAnimal({ microchip: true });
 
     axios
       .post('/api/v1/animals', { ...newAnimal })
       .then(resp => {
-        history.push(`/animal/${resp.data.data.id}`)
+        history.push(`/animal/${resp.data.data.id}`);
       })
       .catch(data => console.log('Error', data));
-    };
+  };
 
   const onChange = e => {
     setSearchField(e.target.value);
@@ -96,7 +130,12 @@ const SearchPage = () => {
 
       <div className='right-panel'>
         <div className='right-panel-header'>
-          <button variant='outlined' color='primary' onClick={handleClickOpen} id='Addnew'>
+          <button
+            variant='outlined'
+            color='primary'
+            onClick={handleClickOpen}
+            id='Addnew'
+          >
             Add New
           </button>
 
@@ -111,6 +150,7 @@ const SearchPage = () => {
           handleClose={handleClose}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          handleFile={handleFile}
         />
         <div className='right-panel-body'>{list}</div>
       </div>
