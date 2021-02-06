@@ -14,13 +14,12 @@ module Api
                 animal = Animal.new(animal_params)
                 debugger
                 if animal.save
-                    render json: AnimalSerializer.new(animal).serialized_json
+                    render json: {message: 'success'}
                 else
                     render json: { error: animal.errors.full_messages }, status: 422
                 end
             end
             def update 
-                p 'in the update method'
                 animal ||= Animal.find_by(id: params[:id])
 
                 if animal.update(animal_params)

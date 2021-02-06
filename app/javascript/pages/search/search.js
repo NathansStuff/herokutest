@@ -53,20 +53,9 @@ const SearchPage = () => {
     console.log(newAnimal);
   };
 
-  // const handleFile = e => {
-  //   e.preventDefault();
-  //   setNewAnimal(
-  //     Object.assign({}, newAnimal, { [e.target.name]: e.target.files[0] })
-  //   );
-  //   console.log(newAnimal)
-  //   debugger
-  // };
-
-  // const [selectedFile, setSelectedFile] = useState(null)
-
   const handleFile = e => {
     e.preventDefault();
-    const file = e.target.files[0];
+    const file = e.currentTarget.files[0];
     // setSelectedFile(file)
     // console.log(selectedFile)
     setNewAnimal({
@@ -93,14 +82,16 @@ const SearchPage = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('animal[name]', newAnimal.name);
-    formData.append('animal[age]', newAnimal.age);
-    formData.append('animal[breed]', newAnimal.breed);
-    formData.append('animal[microchip]', newAnimal.microchip);
-    formData.append('animal[microchip_number]', newAnimal.microchip_number);
-    formData.append('animal[notes]', newAnimal.notes);
-    formData.append('animal[photo]', newAnimal.photo);
-
+    formData.append("animal[name]", newAnimal.name);
+    formData.append("animal[age]", newAnimal.age);
+    formData.append("animal[breed]", newAnimal.breed);
+    formData.append("animal[microchip]", newAnimal.microchip);
+    formData.append("animal[microchip_number]", newAnimal.microchip_number);
+    formData.append("animal[notes]", newAnimal.notes);
+    // formData.append("animal[photo]", newAnimal.photo);
+    console.log(formData)
+    console.log(newAnimal.name)
+    console.log('*******')
     // axios({
     //   method: 'post',
     //   url: '/api/v1/animals',
