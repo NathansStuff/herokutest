@@ -14,8 +14,7 @@ function getData(props) {
     : null;
   const microchip_number = HasMicrochipNumber ? HasMicrochipNumber : '-';
   const image =
-    'https://upload.wikimedia.org/wikipedia/commons/1/15/White_Persian_Cat.jpg';
-  console.log(props);
+    `https://cybeleproject-bucket-dev.s3.us-east-2.amazonaws.com/${props.attributes.photo}`;
   return { name, image, age, breed, microchip, microchip_number };
 }
 
