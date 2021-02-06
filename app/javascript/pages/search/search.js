@@ -54,8 +54,7 @@ const SearchPage = () => {
     microchip: false,
     microchip_number: '',
     notes: '',
-    photo:
-      'https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
+    photo: 'default_image.png',
   });
 
   // takes input to update the newAnimal form
@@ -73,8 +72,8 @@ const SearchPage = () => {
     e.preventDefault();
     const file = e.currentTarget.files[0];
     setImage(file);
-    const filename = file.name.split(/(\\|\/)/g).pop();
-    setNewAnimal(Object.assign({}, newAnimal, { photo: filename }));
+    const filename = file.name.split(/(\\|\/)/g).pop(); // removes /\ from file name
+    setNewAnimal(Object.assign({}, newAnimal, { photo: filename })); 
   };
 
   // posts data to api backend
@@ -91,41 +90,9 @@ const SearchPage = () => {
         header: 'Access-Control-Allow-Origin',
       };
 
-      let file;
-
       await S3FileUpload.uploadFile(image, config)
-        // .then(data => {
-        //   // file = data.location; //save the images url
-        //   // setFileUrl(data.key); //save the images url
-        //   file = data.location;
-        // })
-        // .then(async () => {
-        //   console.log('***FILE BELOW****');
-        //   console.log(file);
-        //   setNewAnimal(Object.assign({}, newAnimal, { photo: file }));
-
-        //   setNewAnimal(Object.assign({}, newAnimal, { photo: file }));
-        //   // setTimeout(function () {
-        //   //   // console.log(newAnimal);
-        //   // }, 3000)
-        //   // useEffect(() => {
-        //   //   setNewAnimal(
-        //   //     Object.assign({}, newAnimal, { photo: file }),
-        //   //     submitNewAnimal()
-        //   //   );
-
-        //   //   useEffect(() => {
-        //   //     console.log(newAnimal);
-        //   //   }, [setNewAnimal(Object.assign({}, newAnimal, { photo: file }))]);
-        // })
-        // .then(() => {
-        //   history.push('/search');
-        // })
-        // .then(() => {
-        //   console.log(newAnimal); // submit the form to backend
-        // })
-        .then(response => {
-          submitNewAnimal();
+        .then(() => {
+          submitNewAnimal(); // submit the form to backend after creating aws image
         })
         .catch(err => {
           console.log(err);
