@@ -5,7 +5,9 @@ import SearchCard from '../../components/search-card/search-card';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
-import ReactS3 from 'react-s3';
+import S3FileUpload from 'react-s3';
+import { uploadFile } from 'react-s3';
+import aws from '../../../../keys';
 
 const SearchPage = () => {
   let history = useHistory();
@@ -51,7 +53,6 @@ const SearchPage = () => {
     setNewAnimal(
       Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
     );
-    console.log(newAnimal);
   };
 
   const handleFile = e => {
@@ -82,41 +83,56 @@ const SearchPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('animal[name]', newAnimal.name);
-    formData.append('animal[age]', newAnimal.age);
-    formData.append('animal[breed]', newAnimal.breed);
-    formData.append('animal[microchip]', newAnimal.microchip);
-    formData.append('animal[microchip_number]', newAnimal.microchip_number);
-    formData.append('animal[notes]', newAnimal.notes);
-    // formData.append("animal[photo]", newAnimal.photo);
-    console.log(formData);
-    console.log(newAnimal.photo);
-    console.log('*******');
+    const config = {
+      bucketName: aws.bucket,
+      region: aws.region,
+      accessKeyId: aws.access_key_id,
+      secretAccessKey: aws.secret_access_key,
+      header: 'Access-Control-Allow-Origin',
+    };
 
-    $.ajax({
-      url: '/api/v1/animals',
-      method: 'POST',
-      data: formData,
-      contentType: false,
-      processData: false,
-    })
-
-      // .post('/api/v1/animals', { ...formData })
-      .then(resp => {
-        history.push(`/animal/${resp.data.data.id}`);
+    S3FileUpload.uploadFile(newAnimal.photo, config)
+      .then(data => {
+        console.log(data.location);
       })
-      .catch(data => console.log('Error', data));
+      .catch(err => {
+        console.log(err);
+      });
 
-    // axios({
-    //   method: 'post',
+    // const formData = new FormData();
+    // formData.append('animal[name]', newAnimal.name);
+    // formData.append('animal[age]', newAnimal.age);
+    // formData.append('animal[breed]', newAnimal.breed);
+    // formData.append('animal[microchip]', newAnimal.microchip);
+    // formData.append('animal[microchip_number]', newAnimal.microchip_number);
+    // formData.append('animal[notes]', newAnimal.notes);
+    // // formData.append("animal[photo]", newAnimal.photo);
+    // console.log(formData);
+    // console.log(newAnimal.photo);
+    // console.log('*******');
+
+    // $.ajax({
     //   url: '/api/v1/animals',
+    //   method: 'POST',
     //   data: formData,
-    //   headers: {
-    //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-    //   },
-    // })
+    //   contentType: false,
+    //   processData: false,
   };
+
+  // // .post('/api/v1/animals', { ...formData })
+  // .then(resp => {
+  //   history.push(`/animal/${resp.data.data.id}`);
+  // })
+  // .catch(data => console.log('Error', data));
+
+  // axios({
+  //   method: 'post',
+  //   url: '/api/v1/animals',
+  //   data: formData,
+  //   headers: {
+  //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+  //   },
+  // })
 
   const onChange = e => {
     setSearchField(e.target.value);

@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Id": "http referer policy example",
+    "Statement": [
+        {
+            "Sid": "Allow all kind of http requests originating from http://http://127.0.0.1:3000/ and https://www.your-website.com",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "AWS": "arn:aws:iam::400256807063:user/cybeleproject-master"
+            ],
+                        "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::cybeleproject-bucket-dev",
+                "arn:aws:s3:::cybeleproject-bucket-dev/*"
+            ]
+        }
+    ]
+}
