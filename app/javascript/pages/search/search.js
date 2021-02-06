@@ -55,7 +55,7 @@ const SearchPage = () => {
     microchip: false,
     microchip_number: '',
     notes: '',
-    photo: null,
+    photo: '',
   });
 
   // takes input to update the newAnimal form
@@ -93,15 +93,28 @@ const SearchPage = () => {
 
       S3FileUpload.uploadFile(image, config)
         .then(data => {
-          file = data.location; //save the images url
-        })
-        .then(() => {
+          // file = data.location; //save the images url
+          file = data.key; //save the images url
+
+          console.log(data);
+          console.log('***');
           console.log(file);
-          setNewAnimal(Object.assign({}, newAnimal, { photo: file })); // store the image url in state
         })
         .then(() => {
-          submitNewAnimal(); // submit the form to backend
+          console.log(file); // store the image url in state
+          // useEffect(() => {
+          //   setNewAnimal(
+          //     Object.assign({}, newAnimal, { photo: file }),
+          //     submitNewAnimal()
+          //   );
+
+          // useEffect(() => {
+          //   console.log(newAnimal);
+          // }, setNewAnimal(Object.assign({}, newAnimal, { photo: file })));
         })
+        // .then(() => {
+        //   submitNewAnimal(); // submit the form to backend
+        // })
         .catch(err => {
           console.log(err);
         });

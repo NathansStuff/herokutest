@@ -7,6 +7,7 @@ class CreateAnimals < ActiveRecord::Migration[6.0]
       t.boolean :microchip
       t.integer :microchip_number
       t.string :notes
+      t.string :photo
 
       t.timestamps
     end

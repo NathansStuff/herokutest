@@ -3,6 +3,4 @@ class Animal < ApplicationRecord
     validates :name, presence: true
     validates :age, numericality: { greater_than: 0}, presence: true
     validates :breed, presence: true
-    has_one_attached :photo, dependent: :destroy
-    validates :photo, content_type: [:png, :jpg, :jpeg]
 end

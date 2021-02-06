@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_030634) do
+ActiveRecord::Schema.define(version: 2021_02_05_100109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 2021_02_06_030634) do
     t.boolean "microchip"
     t.integer "microchip_number"
     t.string "notes"
+    t.string "photo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "photo"
   end
 
   create_table "daily_updates", force: :cascade do |t|
