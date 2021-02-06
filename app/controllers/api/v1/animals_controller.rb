@@ -12,6 +12,8 @@ module Api
             end
             def create 
                 animal = Animal.new(animal_params)
+                animal.photo.attach(params[:signed_blob_id])
+
                 debugger
                 if animal.save
                     render json: {message: 'success'}

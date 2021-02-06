@@ -5,6 +5,7 @@ import SearchCard from '../../components/search-card/search-card';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
+import ReactS3 from 'react-s3';
 
 const SearchPage = () => {
   let history = useHistory();
@@ -82,24 +83,17 @@ const SearchPage = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("animal[name]", newAnimal.name);
-    formData.append("animal[age]", newAnimal.age);
-    formData.append("animal[breed]", newAnimal.breed);
-    formData.append("animal[microchip]", newAnimal.microchip);
-    formData.append("animal[microchip_number]", newAnimal.microchip_number);
-    formData.append("animal[notes]", newAnimal.notes);
+    formData.append('animal[name]', newAnimal.name);
+    formData.append('animal[age]', newAnimal.age);
+    formData.append('animal[breed]', newAnimal.breed);
+    formData.append('animal[microchip]', newAnimal.microchip);
+    formData.append('animal[microchip_number]', newAnimal.microchip_number);
+    formData.append('animal[notes]', newAnimal.notes);
     // formData.append("animal[photo]", newAnimal.photo);
-    console.log(formData)
-    console.log(newAnimal.name)
-    console.log('*******')
-    // axios({
-    //   method: 'post',
-    //   url: '/api/v1/animals',
-    //   data: formData,
-    //   headers: {
-    //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-    //   },
-    // })
+    console.log(formData);
+    console.log(newAnimal.photo);
+    console.log('*******');
+
     $.ajax({
       url: '/api/v1/animals',
       method: 'POST',
@@ -113,6 +107,15 @@ const SearchPage = () => {
         history.push(`/animal/${resp.data.data.id}`);
       })
       .catch(data => console.log('Error', data));
+
+    // axios({
+    //   method: 'post',
+    //   url: '/api/v1/animals',
+    //   data: formData,
+    //   headers: {
+    //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+    //   },
+    // })
   };
 
   const onChange = e => {
