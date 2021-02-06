@@ -6,11 +6,10 @@ import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import S3FileUpload from 'react-s3';
-import { uploadFile } from 'react-s3';
 import aws from '../../../../keys';
 
 const SearchPage = () => {
-  let history = useHistory();
+  let history = useHistory(); // for browser navigation
 
   // =================================================================================
   // POPULATE ANIMALS
@@ -55,7 +54,8 @@ const SearchPage = () => {
     microchip: false,
     microchip_number: '',
     notes: '',
-    photo: '',
+    photo:
+      'https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
   });
 
   // takes input to update the newAnimal form
@@ -73,10 +73,12 @@ const SearchPage = () => {
     e.preventDefault();
     const file = e.currentTarget.files[0];
     setImage(file);
+    const filename = file.name.split(/(\\|\/)/g).pop();
+    setNewAnimal(Object.assign({}, newAnimal, { photo: filename }));
   };
 
   // posts data to api backend
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if (image) {
@@ -91,30 +93,40 @@ const SearchPage = () => {
 
       let file;
 
-      S3FileUpload.uploadFile(image, config)
-        .then(data => {
-          // file = data.location; //save the images url
-          file = data.key; //save the images url
-
-          console.log(data);
-          console.log('***');
-          console.log(file);
-        })
-        .then(() => {
-          console.log(file); // store the image url in state
-          // useEffect(() => {
-          //   setNewAnimal(
-          //     Object.assign({}, newAnimal, { photo: file }),
-          //     submitNewAnimal()
-          //   );
-
-          // useEffect(() => {
-          //   console.log(newAnimal);
-          // }, setNewAnimal(Object.assign({}, newAnimal, { photo: file })));
-        })
-        // .then(() => {
-        //   submitNewAnimal(); // submit the form to backend
+      await S3FileUpload.uploadFile(image, config)
+        // .then(data => {
+        //   // file = data.location; //save the images url
+        //   // setFileUrl(data.key); //save the images url
+        //   file = data.location;
         // })
+        // .then(async () => {
+        //   console.log('***FILE BELOW****');
+        //   console.log(file);
+        //   setNewAnimal(Object.assign({}, newAnimal, { photo: file }));
+
+        //   setNewAnimal(Object.assign({}, newAnimal, { photo: file }));
+        //   // setTimeout(function () {
+        //   //   // console.log(newAnimal);
+        //   // }, 3000)
+        //   // useEffect(() => {
+        //   //   setNewAnimal(
+        //   //     Object.assign({}, newAnimal, { photo: file }),
+        //   //     submitNewAnimal()
+        //   //   );
+
+        //   //   useEffect(() => {
+        //   //     console.log(newAnimal);
+        //   //   }, [setNewAnimal(Object.assign({}, newAnimal, { photo: file }))]);
+        // })
+        // .then(() => {
+        //   history.push('/search');
+        // })
+        // .then(() => {
+        //   console.log(newAnimal); // submit the form to backend
+        // })
+        .then(response => {
+          submitNewAnimal();
+        })
         .catch(err => {
           console.log(err);
         });
