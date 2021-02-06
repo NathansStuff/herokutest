@@ -7,7 +7,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Test from './test'
 
 const NewAnimalForm = props => {
   if (!props.open) {
@@ -15,7 +14,6 @@ const NewAnimalForm = props => {
   }
   return (
     <Dialog open={props.open}>
-    <Test/>
       <div className='new-animal-wrapper'>
         <div className='new-animal-form'>
           <div className='new-animal-title'>

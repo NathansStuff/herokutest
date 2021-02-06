@@ -4,36 +4,41 @@ animals = Animal.create([
         age: 4,
         breed: 'dont know',
         microchip: false,
-        notes: 'is fat'
+        notes: 'is fat',
+        photo: 'default_image.png'
    },
    { 
         name: 'Mr Beautiful',
         age: 2,
         breed: 'ginger',
         microchip: false,
-        notes: 'is beautiful'
+        notes: 'is beautiful',
+        photo: 'default_image.png'
     }, 
     { 
          name: 'Bob',
          age: 2,
          breed: 'Siamese',
          microchip: false,
-         notes: 'is a cat'
-    },
+         notes: 'is a cat',
+         photo: 'default_image.png'
+        },
     { 
         name: 'Bobette',
         age: 3,
         breed: 'Persian',
         microchip: true,
         microchip_number: 12345,
-        notes: 'is not persian'
+        notes: 'is not persian',
+        photo: 'default_image.png'
    },
    { 
         name: 'Jack',
         age: 28,
         breed: 'Tiger',
         microchip: false,
-        notes: 'Tigers are too cats'
+        notes: 'Tigers are too cats',
+        photo: 'default_image.png'
     },
     { 
         name: 'Dolly',
@@ -41,7 +46,8 @@ animals = Animal.create([
         breed: 'Ragdoll',
         microchip: true,
         microchip_number: 54321,
-        notes: 'note!'
+        notes: 'note!',
+        photo: 'default_image.png'
    },
 ])
 

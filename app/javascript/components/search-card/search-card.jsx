@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 const SearchCard = props => {
   let history = useHistory();
+  console.log(props)
 
   const link = `/animal/${props.id}`;
 
@@ -15,7 +16,7 @@ const SearchCard = props => {
     <div className='search-card' onClick={onClick}>
       <p>{props.animal.attributes.name}</p>
       <img
-        src='https://upload.wikimedia.org/wikipedia/commons/1/15/White_Persian_Cat.jpg'
+        src={`https://cybeleproject-bucket-dev.s3.us-east-2.amazonaws.com/${props.animal.attributes.photo}`}
         alt='animal image'
       />
     </div>
