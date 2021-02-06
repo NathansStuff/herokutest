@@ -30,7 +30,7 @@ const EditAnimalForm = props => {
               <input
                 name='age'
                 type='number'
-                placeholder={props.animal.age}
+                value={props.animal.age}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -39,7 +39,7 @@ const EditAnimalForm = props => {
 
               <input
                 name='breed'
-                placeholder={props.animal.breed}
+                value={props.animal.breed}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -49,7 +49,7 @@ const EditAnimalForm = props => {
               <input
                 name='microchip'
                 type='checkbox'
-                placeholder={props.animal.microchip}
+                value={props.animal.microchip}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -59,7 +59,7 @@ const EditAnimalForm = props => {
               <input
                 name='microchip_number'
                 type='number'
-                placeholder={props.animal.microchip_number}
+                value={props.animal.microchip_number}
                 onChange={props.handleChange}
               ></input>
             </div>
@@ -70,10 +70,13 @@ const EditAnimalForm = props => {
                 name='notes'
                 rows='10'
                 cols='50'
-                placeholder={props.animal.notes}
+                value={props.animal.notes}
                 onChange={props.handleChange}
               ></textarea>
             </div>
+            <div className='new-animal-field'>
+            <input type='file' name='photo' onChange={props.handleFile} />
+          </div>
             <div>
               <button type='submit'>Submit</button>
             </div>
