@@ -12,11 +12,9 @@ module Api
             end
             def create 
                 animal = Animal.new(animal_params)
-                animal.photo.attach(params[:signed_blob_id])
-
-                debugger
+                # animal.photo.attach(params[:signed_blob_id])
                 if animal.save
-                    render json: {message: 'success'}
+                    render json: AnimalSerializer.new(animal).serialized_json
                 else
                     render json: { error: animal.errors.full_messages }, status: 422
                 end

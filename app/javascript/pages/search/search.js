@@ -12,11 +12,10 @@ import aws from '../../../../keys';
 const SearchPage = () => {
   let history = useHistory();
 
+  // =================================================================================
+  // POPULATE ANIMALS
+  // =================================================================================
   const [animals, setAnimals] = useState([]);
-  const [searchField, setSearchField] = useState([]);
-  const [open, setOpen] = useState(false);
-  // Get all animals from api
-  // Update animals in state as they return
   useEffect(() => {
     axios
       .get('./api/v1/animals.json')
@@ -26,17 +25,29 @@ const SearchPage = () => {
       .catch(resp => console.log(resp), [animals.length]);
   }, []);
 
+  // =================================================================================
+  // SEARCH BOX
+  // =================================================================================
+  const [searchField, setSearchField] = useState([]);
+
   const filteredAnimals = animals.filter(animal =>
     animal.attributes.name
       .toLowerCase()
       .includes(searchField.length > 0 ? searchField.toLowerCase() : '')
   );
 
+  // The individual animal box, filtered by the search form
   const list = filteredAnimals.map(animal => {
     return <SearchCard animal={animal} id={animal.id} />;
   });
 
-  // Code for the new animal form
+  const onChange = e => {
+    setSearchField(e.target.value);
+  };
+
+  // =================================================================================
+  // NEW ANIMAL FORM
+  // =================================================================================
   const [newAnimal, setNewAnimal] = useState({
     name: '',
     age: '',
@@ -53,90 +64,66 @@ const SearchPage = () => {
     setNewAnimal(
       Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
     );
+    console.log(newAnimal);
   };
 
+  // set the file to uploaded file
+  const [image, setImage] = useState(null);
   const handleFile = e => {
     e.preventDefault();
     const file = e.currentTarget.files[0];
-    // setSelectedFile(file)
-    // console.log(selectedFile)
-    setNewAnimal({
-      ...newAnimal,
-      photo: file,
-    });
-
-    // setNewAnimal(
-    //   Object.assign({}, newAnimal, { [e.target.name]: e.target.files[0] })
-    // ) // doesnt work
-
-    // setNewAnimal(() => ({name: 'help'}))
-
-    // setNewAnimal({ name: 'fclk me' });
-
-    // console.log(e.currentTarget.files[0]);
-    console.log(newAnimal);
-    // console.log(e.target.name)
-    // debugger
+    setImage(file);
   };
 
   // posts data to api backend
   const handleSubmit = e => {
     e.preventDefault();
 
-    const config = {
-      bucketName: aws.bucket,
-      region: aws.region,
-      accessKeyId: aws.access_key_id,
-      secretAccessKey: aws.secret_access_key,
-      header: 'Access-Control-Allow-Origin',
-    };
+    if (image) {
+      // aws settings
+      const config = {
+        bucketName: aws.bucket,
+        region: aws.region,
+        accessKeyId: aws.access_key_id,
+        secretAccessKey: aws.secret_access_key,
+        header: 'Access-Control-Allow-Origin',
+      };
 
-    S3FileUpload.uploadFile(newAnimal.photo, config)
-      .then(data => {
-        console.log(data.location);
+      let file;
+
+      S3FileUpload.uploadFile(image, config)
+        .then(data => {
+          file = data.location; //save the images url
+        })
+        .then(() => {
+          console.log(file);
+          setNewAnimal(Object.assign({}, newAnimal, { photo: file })); // store the image url in state
+        })
+        .then(() => {
+          submitNewAnimal(); // submit the form to backend
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      submitNewAnimal(); // submit the form to backend without doing aws stuff if there is no image
+    }
+  };
+
+  // post the new animal form to the backend
+  const submitNewAnimal = () => {
+    axios
+      .post('/api/v1/animals', { ...newAnimal })
+      .then(resp => {
+        history.push(`/animal/${resp.data.data.id}`);
       })
-      .catch(err => {
-        console.log(err);
-      });
-
-    // const formData = new FormData();
-    // formData.append('animal[name]', newAnimal.name);
-    // formData.append('animal[age]', newAnimal.age);
-    // formData.append('animal[breed]', newAnimal.breed);
-    // formData.append('animal[microchip]', newAnimal.microchip);
-    // formData.append('animal[microchip_number]', newAnimal.microchip_number);
-    // formData.append('animal[notes]', newAnimal.notes);
-    // // formData.append("animal[photo]", newAnimal.photo);
-    // console.log(formData);
-    // console.log(newAnimal.photo);
-    // console.log('*******');
-
-    // $.ajax({
-    //   url: '/api/v1/animals',
-    //   method: 'POST',
-    //   data: formData,
-    //   contentType: false,
-    //   processData: false,
+      .catch(data => console.log('Error', data));
   };
 
-  // // .post('/api/v1/animals', { ...formData })
-  // .then(resp => {
-  //   history.push(`/animal/${resp.data.data.id}`);
-  // })
-  // .catch(data => console.log('Error', data));
-
-  // axios({
-  //   method: 'post',
-  //   url: '/api/v1/animals',
-  //   data: formData,
-  //   headers: {
-  //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-  //   },
-  // })
-
-  const onChange = e => {
-    setSearchField(e.target.value);
-  };
+  // =================================================================================
+  // POPUP BOX (ANIMAL FORM)
+  // =================================================================================
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -147,6 +134,9 @@ const SearchPage = () => {
     setOpen(false);
   };
 
+  // =================================================================================
+  // RENDER
+  // =================================================================================
   return (
     <div className='search-wrapper'>
       <div className='left-panel'>
