@@ -6,7 +6,7 @@ import './animal.scss';
 import DailyHistory from '../../components/daily-history/daily-history';
 import { useHistory } from 'react-router-dom';
 import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
-import aws from '../../../../keys';
+import config from '../../aws/config';
 import S3FileUpload from 'react-s3';
 
 const Animal = props => {
@@ -44,13 +44,6 @@ const Animal = props => {
 
       if (image) {
         // aws settings
-        const config = {
-          bucketName: aws.bucket,
-          region: aws.region,
-          accessKeyId: aws.access_key_id,
-          secretAccessKey: aws.secret_access_key,
-          header: 'Access-Control-Allow-Origin',
-        };
 
         S3FileUpload.uploadFile(image, config)
           .then(() => {

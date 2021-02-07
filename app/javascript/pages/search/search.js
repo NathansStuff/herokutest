@@ -6,7 +6,7 @@ import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import S3FileUpload from 'react-s3';
-import aws from '../../../../keys';
+import config from '../../aws/config';
 
 const SearchPage = () => {
   let history = useHistory(); // for browser navigation
@@ -82,15 +82,6 @@ const SearchPage = () => {
     e.preventDefault();
 
     if (image) {
-      // aws settings
-      const config = {
-        bucketName: aws.bucket,
-        region: aws.region,
-        accessKeyId: aws.access_key_id,
-        secretAccessKey: aws.secret_access_key,
-        header: 'Access-Control-Allow-Origin',
-      };
-
       await S3FileUpload.uploadFile(image, config)
         .then(() => {
           submitNewAnimal(); // submit the form to backend after creating aws image
