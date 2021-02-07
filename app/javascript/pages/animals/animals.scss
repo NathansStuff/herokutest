@@ -1,6 +1,10 @@
-ul {
+
+ul{
     display:flex;
-    flex-direction: column;
-    padding: 20px;
-    border-style: solid red;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+}
+li{
+    max-width: 30%;
 }
