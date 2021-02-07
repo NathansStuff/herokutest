@@ -1,14 +1,19 @@
 .search-wrapper {
-    margin: 20px;
-    border-style: solid;
+    margin: 100px 100px 20px;
     display: flex;
+    justify-content: center;
     z-index: 0;
+    opacity: 60%;
+    height: 600px ;
 }
 
 .left-panel {
-    width: 30%;
-    border-style: solid;
-    margin: 10px;
+    z-index:2;
+    background-color: rgb(185, 176, 176);
+    width: 20%;
+    border-radius: 25px;
+    margin-left: 10px;
+    margin-top: 10px;
     padding: 10px;
 }
 
@@ -16,30 +21,71 @@
     img {
         width: 50%;
         margin-left: 25%;
+        border-radius: 10px;
+
     }
     h3 {
         text-align: center;
     }
 }
+.left-panel-writing{
+    text-align: center;
+}
 .right-panel{
-    width: 70%;
-    border-style: solid;
-    margin: 10px;
+    z-index:1;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(158, 150, 150, 0.8)), to(rgba(115, 115, 115, 0.2)), color-stop(.99,#1d1c1c));
+    width: 80%;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-top:10px;
+    margin-left: -50px;
 }
 
-.right-panel-header,
-.right-panel-body {
-    border-style: solid;
-    margin: 10px;
-    padding: 10px;
-}
 
-.right-panel-body {
-    display: flex;
-    flex-wrap: wrap;
+#Addnew{
+    opacity:50%;
+    border-radius: 15px;
+    background-color: lightgrey;
+    width: 10em;
+    text-align: space-around;
+}
+#SearchBar{
+    border-radius: 5px;
 }
 
 .right-panel-header {
+    padding:10px;
+    margin-top: 10px;
+    margin-right: 10em;
+    margin-left: 10em;
     display: flex;
     justify-content: space-between;
+   
+    border-bottom: 3px solid white;
+}
+
+.right-panel-body {
+    margin-left: 7em;
+    margin-right: 7em;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    height:85%;
+
+}
+
+.search-card{
+    img{
+        height:30%;
+        width: 70%;
+    }
+    margin:15px;
+    min-width:25%;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    color: white;
 }

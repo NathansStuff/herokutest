@@ -11,12 +11,12 @@
 // export default config;
 
 
-const config = {
-  bucketName: ENV.BUCKET_NAME,
-  region: ENV.REGION,
-  accessKeyId: ENV.ACCESS_KEY,
-  secretAccessKey: ENV.SECRET_ACCESS_KEY,
-  header: 'Access-Control-Allow-Origin',
-};
+// const config = {
+//   bucketName: ENV.BUCKET_NAME,
+//   region: ENV.REGION,
+//   accessKeyId: ENV.ACCESS_KEY,
+//   secretAccessKey: ENV.SECRET_ACCESS_KEY,
+//   header: 'Access-Control-Allow-Origin',
+// };
 
-export default config;
+// export default config;
