@@ -7,7 +7,7 @@ function getData(props) {
   const name = props.attributes ? props.attributes.name : null;
   const age = props.attributes ? props.attributes.age : null;
   const breed = props.attributes ? props.attributes.breed : null;
-  const hasMicrochip = props.attributes ? props.attributes.microchip : null;
+  const hasMicrochip = props.attributes ? props.attributes.microchip_number : '';
   const microchip = hasMicrochip ? 'yes' : 'no';
   const HasMicrochipNumber = props.attributes
     ? props.attributes.microchip_number

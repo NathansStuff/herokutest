@@ -1,4 +1,4 @@
-import { aws } from '../../../keys';
+import aws from '../../../keys';
 
 const config = {
   bucketName: aws.bucket,

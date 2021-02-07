@@ -44,16 +44,6 @@ const EditAnimalForm = props => {
               ></input>
             </div>
             <div className='new-animal-field'>
-              <label>Microchip</label>
-
-              <input
-                name='microchip'
-                type='checkbox'
-                value={props.animal.microchip}
-                onChange={props.handleChange}
-              ></input>
-            </div>
-            <div className='new-animal-field'>
               <label>MicrochipNumber</label>
 
               <input
