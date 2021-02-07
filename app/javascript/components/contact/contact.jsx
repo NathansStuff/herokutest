@@ -3,10 +3,8 @@ import './contact.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import * as emailjs from 'emailjs-com';
-import {
-  Button
-} from 'reactstrap';
+// import * as emailjs from 'emailjs-com';
+import { Button } from 'reactstrap';
 
 class Contact extends Component {
   state = {
@@ -18,7 +16,7 @@ class Contact extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
     const { name, email, phone, message } = this.state;
     let templateParams = {
       from_name: email,
@@ -26,16 +24,16 @@ class Contact extends Component {
       phone: phone,
       message: message,
     };
-    emailjs
-      .send(
-        'service_oj6ecd1',
-        'template_wb5x5je',
-        templateParams,
-        'user_vTT2nk4pHgmYk78U5flbL'
-      )
-      .then(result => {
-        console.log(result);
-      });
+    // emailjs
+    //   .send(
+    //     'service_oj6ecd1',
+    //     'template_wb5x5je',
+    //     templateParams,
+    //     'user_vTT2nk4pHgmYk78U5flbL'
+    //   )
+    //   .then(result => {
+    //     console.log(result);
+    //   });
     this.resetForm();
   }
   resetForm() {
