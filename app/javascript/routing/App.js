@@ -4,7 +4,7 @@ import HomePage from '../pages/home/home';
 import Animal from '../pages/animal/animal';
 import SearchPage from '../pages/search/search';
 import SignInAndSignUp from '../pages/sign-on-and-sign-up/sign-on-and-sign-up';
-import { auth } from '../firebase/firebase';
+import { auth, createUserProfileDocument } from '../firebase/firebase';
 import NavBar from '../components/navbar/navbar';
 
 export default class App extends Component {
@@ -19,8 +19,21 @@ export default class App extends Component {
   ubsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.ubsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.ubsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(0),
+            },
+          });
+        });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
@@ -32,7 +45,7 @@ export default class App extends Component {
     return (
       <div>
         <Fragment>
-          <NavBar currentUser={this.state.currentUser}/>
+          <NavBar currentUser={this.state.currentUser} />
           <BrowserRouter>
             <Switch>
               <Route exact path='/'>

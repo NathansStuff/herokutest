@@ -3,14 +3,14 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-    apiKey: 'AIzaSyCFvpXWhxLkLRmYuC4GiqMdXSNACASnUgo',
-    authDomain: 'cybeleproject.firebaseapp.com',
-    projectId: 'cybeleproject',
-    storageBucket: 'cybeleproject.appspot.com',
-    messagingSenderId: '876652284900',
-    appId: '1:876652284900:web:7bca8be72ba0703c6115f1',
-    measurementId: 'G-K5HX7WQLHR',
-  };
+  apiKey: 'AIzaSyCFvpXWhxLkLRmYuC4GiqMdXSNACASnUgo',
+  authDomain: 'cybeleproject.firebaseapp.com',
+  projectId: 'cybeleproject',
+  storageBucket: 'cybeleproject.appspot.com',
+  messagingSenderId: '876652284900',
+  appId: '1:876652284900:web:7bca8be72ba0703c6115f1',
+  measurementId: 'G-K5HX7WQLHR',
+};
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) {
