@@ -26,7 +26,7 @@ const Login = (props) => {
                 <p className="errorMsg">{emailError}</p>
                 <label>Password</label>
             </div>
-
+        
         </section>
     )
 }
