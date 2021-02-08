@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fire from './firebaseConfig'
+import firebase from 'firebase';
 
 
 const Auth = () => {
@@ -21,7 +22,7 @@ const clearErrors = () => {
     setPasswordError('');
 }
 
-const handelLogin = () => {
+const handleLogin = () => {
     clearErrors();
     fire
     .auth()
@@ -81,7 +82,22 @@ useEffect(() => {
 }, [])
 
 
-
+return(
+    <div className="Auth">
+        <Login email={email}
+         setEmail={setEmail} 
+         password={password} 
+         setPassword={setPassword} 
+         handleLogin={handleLogin} 
+         handleLogout={handleLogout} 
+         handleSignup={handleSignup}
+         hasAccount={hasAccount}
+         setHasAccount={setHasAccount}
+         emailError={emailError}
+         passwordError={passwordError}
+          />
+    </div>
+)
 
 
 }
