@@ -9,8 +9,6 @@
 // };
 
 // export default config;
-<<<<<<< Updated upstream
-=======
 
 
 const config = {
@@ -22,4 +20,3 @@ const config = {
 };
 
 export default config;
->>>>>>> Stashed changes

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../pages/home/home';
 import Animal from '../pages/animal/animal';
 import SearchPage from '../pages/search/search';
+import Login from '../pages/login/login';
 
 export default class App extends Component {
   constructor() {
@@ -19,6 +20,7 @@ export default class App extends Component {
             </Route>
             <Route exact path='/animal/:id' component={Animal} />
             <Route exact path='/search' component={SearchPage} />
+            <Route exact path='/login' component={Login} />
           </Switch>
         </BrowserRouter>
       </div>
