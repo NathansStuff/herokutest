@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-
+import React from 'react';
 
 var firebaseConfig = {
     apiKey: "AIzaSyAXxkofTSQsPHy0Gp5noxNmAnAj9edZeMc",

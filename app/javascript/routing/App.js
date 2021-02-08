@@ -9,17 +9,10 @@ import Signup from '../pages/signup/signup';
 import SearchPage from '../pages/search/search';
 import NewAnimal from '../pages/new-animal/new-animal';
 import axios from 'axios';
-import fire from './firebaseConfig'
+
 
 export default class App extends Component {
-  const [user, setUser] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [hasAccount, setHasAccount] = useState(false);
-
-
+ 
     
 
   render() {
