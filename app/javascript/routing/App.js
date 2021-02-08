@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../pages/home/home';
 import Animal from '../pages/animal/animal';
 import SearchPage from '../pages/search/search';
-import SignInAndSignUp from '../pages/sign-on-and-sign-up/sign-on-and-sign-up';
+import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import { auth, createUserProfileDocument } from '../firebase/firebase';
 import NavBar from '../components/navbar/navbar';
 
@@ -27,7 +27,7 @@ export default class App extends Component {
           this.setState({
             currentUser: {
               id: snapShot.id,
-              ...snapShot.data(0),
+              ...snapShot.data(),
             },
           });
         });
