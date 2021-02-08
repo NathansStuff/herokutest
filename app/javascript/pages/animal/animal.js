@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
 import config from '../../aws/config';
 import S3FileUpload from 'react-s3';
+import SERVER_KEY from '../../aws/server_key'
 
 const Animal = props => {
   // ================================================================================================
@@ -180,6 +181,8 @@ const Animal = props => {
     const id = props.match.params.id;
     const url = `/api/v1/animals/${id}`;
     setId(id);
+    console.log(SERVER_KEY)
+    console.log(gon.SERVER_KEY)
 
     axios
       .get(url)
