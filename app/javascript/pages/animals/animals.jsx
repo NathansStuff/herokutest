@@ -24,7 +24,9 @@ const Animals = () => {
   });
   return (
     <Fragment>
+      <div className = 'animallist'>
       <ul>{list}</ul>
+      </div>
     </Fragment>
   );
 };

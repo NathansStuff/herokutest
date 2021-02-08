@@ -1,15 +1,21 @@
+body{
+
+    background-image: url("../../../assets/images/aboutbackground.jpg");
+    background-repeat: no-repeat;
+}
+
 .search-wrapper {
-    margin: 100px 100px 20px;
+    margin: 180px 100px 20px;
     display: flex;
     justify-content: center;
     z-index: 0;
-    opacity: 60%;
+    opacity: 80%;
     height: 100% ;
 }
 
 .left-panel {
     z-index:2;
-    background-color: rgb(185, 176, 176);
+    background-color: rgb(128, 135, 147);
     width: 20%;
     border-radius: 25px;
     margin-left: 10px;
@@ -33,7 +39,7 @@
 }
 .right-panel{
     z-index:1;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(180, 185, 193, 0.642)), to(rgba(81, 105, 171, 0.293)), color-stop(.99,#3c3c64a0));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(128, 135, 147, 0.902)), to(rgba(222, 220, 222, 0.807)), color-stop(.99,#fffffff2)); 
     width: 80%;
     border-radius: 20px;
     margin-right: 10px;
@@ -43,9 +49,9 @@
 
 
 #Addnew{
-    opacity:50%;
+    
     border-radius: 15px;
-    background-color: lightgrey;
+    background-color: lightgray;
     width: 10em;
     text-align: space-around;
 }

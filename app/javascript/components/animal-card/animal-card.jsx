@@ -5,7 +5,7 @@ import './animal-card.scss';
 const AnimalCard = props => {
   return (
     <div className='card'>
-      <div className='card-left'>
+      <div className='card-topt'>
         <div className='animal-name'>{props.attributes.attributes.name}</div>
         <div className='animal-age'>Age: {props.attributes.attributes.age}</div>
 
@@ -13,7 +13,7 @@ const AnimalCard = props => {
           <Link to={`/animal/${props.attributes.id}`}>View Me!</Link>
         </div>
       </div>
-      <div className='card-right'>
+      <div className='card-bottom'>
         <div className='animal-photo'>
           <img
             src='https://upload.wikimedia.org/wikipedia/commons/1/15/White_Persian_Cat.jpg'
