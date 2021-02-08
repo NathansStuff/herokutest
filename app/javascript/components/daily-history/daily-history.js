@@ -35,6 +35,7 @@ const DailyHistory = props => {
       <table>
         <tr>
           <th>Date</th>
+          <th>Weight</th>
           <th>Ate Food</th>
           <th>Drank Water</th>
           <th>Notes</th>
