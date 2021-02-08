@@ -1,105 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import fire from './firebaseConfig'
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
+const config = {
+    apiKey: 'AIzaSyC2ym9cNY3r0Tms3_X1eqPx9mFWFuaOqjI',
+    authDomain: 'crown-clothing-71268.firebaseapp.com',
+    projectId: 'crown-clothing-71268',
+    storageBucket: 'crown-clothing-71268.appspot.com',
+    messagingSenderId: '246585212474',
+    appId: '1:246585212474:web:48720eedc6fdc0acec3f03',
+    measurementId: 'G-00MF4YRYQJ',
+  };
 
-const Auth = () => {
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) {
+    return;
+  }
 
-const [user, setUser] = useState('');
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [emailError, setEmailError] = useState('');
-const [passwordError, setPasswordError] = useState('');
-const [hasAccount, setHasAccount] = useState(false);
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+  console.log(snapShot);
 
-const clearInputs = () => {
-    setEmail('');
-    setPasswordError('');
-}
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
 
-const clearErrors = () => {
-    setEmailError('');
-    setPasswordError('');
-}
-
-const handleLogin = () => {
-    clearErrors();
-    fire
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .catch(err => {
-        switch(err.code){
-            case "auth/invalid-email":
-            case "auth/user-disabled":
-            case "auth/user-not-found":
-                setEmailError(err.message);
-                break;
-            case "auth/wrong-password":
-                setPasswordError(err.message);
-                break;
-
-        }
-    });
-};
-const handleSignup = () => {
-    clearErrors();
-    fire
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .catch(err => {
-        switch(err.code){
-            case "auth/email-already-in-use":
-            case "auth/invalid-email":
-                setEmailError(err.message);
-                break;
-
-            case "auth/weak-password":
-                setPasswordError(err.message);
-                break;
-
-        }
-    });
-
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log('error creating user', error.message);
+    }
+  }
+  return userRef;
 };
 
-const handleLogout = () => {
-    fire.auth().signOut();
+firebase.initializeApp(config);
+
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+export default firebase;
+
+
+/*
+const config = {
+  apiKey: 'AIzaSyCFvpXWhxLkLRmYuC4GiqMdXSNACASnUgo',
+  authDomain: 'cybeleproject.firebaseapp.com',
+  projectId: 'cybeleproject',
+  storageBucket: 'cybeleproject.appspot.com',
+  messagingSenderId: '876652284900',
+  appId: '1:876652284900:web:7bca8be72ba0703c6115f1',
+  measurementId: 'G-K5HX7WQLHR',
 };
-
-const authListener = () => {
-    fire.auth().onAuthStateChanged(user =>{
-        if(user){
-            clearInputs();
-            setUser(user);
-        } else {
-            setUser('');
-        }
-    });
-};
-
-useEffect(() => {
-    authListener();
-}, [])
-
-
-return(
-    <div className="Auth">
-        <Login email={email}
-         setEmail={setEmail} 
-         password={password} 
-         setPassword={setPassword} 
-         handleLogin={handleLogin} 
-         handleLogout={handleLogout} 
-         handleSignup={handleSignup}
-         hasAccount={hasAccount}
-         setHasAccount={setHasAccount}
-         emailError={emailError}
-         passwordError={passwordError}
-          />
-    </div>
-)
-
-
-}
-
-export default Auth;
+*/
