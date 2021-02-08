@@ -12,10 +12,10 @@
 
 
 const config = {
-  bucketName: ENV.BUCKET_NAME,
-  region: ENV.REGION,
-  accessKeyId: ENV.ACCESS_KEY,
-  secretAccessKey: ENV.SECRET_ACCESS_KEY,
+  bucketName: 'cybeleproject-bucket-dev',
+  region: 'us-east-2',
+  accessKeyId: 'AKIAV2MJKGCLSK2EHGGV',
+  secretAccessKey: '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',
   header: 'Access-Control-Allow-Origin',
 };
 
