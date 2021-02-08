@@ -209,20 +209,23 @@ const Animal = props => {
             animal={editAnimalForm}
             handleFile={handleFile}
           />
-          <div className='show-top'>
+          <div className = 'show-top'>
+          <div className='show-left'>
             <DisplayCard
               attributes={animal}
               handleDestroy={handleAnimalDestroy}
               id={id}
               edit={handleEditAnimalOpen}
             />
-
+          </div>
+          <div className='show-right'>
             <DailyUpdateForm
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               attributes={animal}
               daily_update={daily_update}
             />
+          </div>
           </div>
           <div className='show-bot'>
             <DailyHistory
