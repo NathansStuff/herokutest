@@ -39,23 +39,27 @@ const NavBar = () => {
               </a>
         </li>
         <li className="nav-item ">
-          <a className="nav-link" href="#">About</a>
+          <a className="nav-link" href="#about">About</a>
         </li>
         <li className="nav-item pl-2">
-          <a className="nav-link" href="#">Contact</a>
+          <a className="nav-link" href="#contact">Contact</a>
         </li>
-        <li className="nav-item pl-5 ml-2 ">
-          <a className="btn rounded-pill shadow-sm text-light bg-info login" href="/login">Login</a>
-        </li>
+        
         <li className="nav-item pl-2">
-          <a className="btn rounded-pill shadow-sm text-light signup" href="/signup">Signup</a>
+          <a className="nav-link" href="/search">Profile</a>
         </li>
+        
+        
         <li className="nav-item pl-2">
        
           <a className="btn rounded-pill shadow-sm text-light bg-info login" onClick={openPopup}>Login</a>
         </li>
         <li className="nav-item pl-2">
           <a className="btn rounded-pill shadow-sm text-light signup" onClick={openPopup}>Signup</a>
+        </li>
+       
+        <li className="nav-item pl-2">
+          <a className="btn rounded-pill shadow-sm text-light signup" onClick={openPopup}>Logout</a>
         </li>
       </ul>
     </div>
