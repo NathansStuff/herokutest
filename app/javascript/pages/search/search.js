@@ -1,12 +1,15 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import './search.scss';
-import axios from 'axios';
-import SearchCard from '../../components/search-card/search-card';
-import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
-import Button from '@material-ui/core/Button';
-import { useHistory } from 'react-router-dom';
-import S3FileUpload from 'react-s3';
-import config from '../../aws/config';
+import React, { useState, useEffect, Fragment } from "react";
+import "./search.scss";
+import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import SearchCard from "../../components/search-card/search-card";
+import NewAnimalForm from "../../components/new-animal-form/new-animal-form";
+import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import S3FileUpload from "react-s3";
+import config from "../../aws/config";
 
 const SearchPage = () => {
   let history = useHistory(); // for browser navigation
@@ -17,12 +20,12 @@ const SearchPage = () => {
   const [animals, setAnimals] = useState([]);
   useEffect(() => {
     axios
-      .get('./api/v1/animals.json')
-      .then(resp => {
+      .get("./api/v1/animals.json")
+      .then((resp) => {
         setAnimals(resp.data.data);
-        console.log(resp.data.data)
+        console.log(resp.data.data);
       })
-      .catch(resp => console.log(resp), [animals.length]);
+      .catch((resp) => console.log(resp), [animals.length]);
   }, []);
 
   // =================================================================================
@@ -30,18 +33,18 @@ const SearchPage = () => {
   // =================================================================================
   const [searchField, setSearchField] = useState([]);
 
-  const filteredAnimals = animals.filter(animal =>
+  const filteredAnimals = animals.filter((animal) =>
     animal.attributes.name
       .toLowerCase()
-      .includes(searchField.length > 0 ? searchField.toLowerCase() : '')
+      .includes(searchField.length > 0 ? searchField.toLowerCase() : "")
   );
 
   // The individual animal box, filtered by the search form
-  const list = filteredAnimals.map(animal => {
+  const list = filteredAnimals.map((animal) => {
     return <SearchCard animal={animal} id={animal.id} />;
   });
 
-  const onChange = e => {
+  const onChange = (e) => {
     setSearchField(e.target.value);
   };
 
@@ -49,17 +52,17 @@ const SearchPage = () => {
   // NEW ANIMAL FORM
   // =================================================================================
   const [newAnimal, setNewAnimal] = useState({
-    name: '',
-    age: '',
-    breed: '',
+    name: "",
+    age: "",
+    breed: "",
     microchip: false,
-    microchip_number: '',
-    notes: '',
-    photo: 'default_image.png',
+    microchip_number: "",
+    notes: "",
+    photo: "default_image.png",
   });
 
   // takes input to update the newAnimal form
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.preventDefault();
     setNewAnimal(
       Object.assign({}, newAnimal, { [e.target.name]: e.target.value })
@@ -69,16 +72,16 @@ const SearchPage = () => {
 
   // set the file to uploaded file
   const [image, setImage] = useState(null);
-  const handleFile = e => {
+  const handleFile = (e) => {
     e.preventDefault();
     const file = e.currentTarget.files[0];
     setImage(file);
     const filename = file.name.split(/(\\|\/)/g).pop(); // removes /\ from file name
-    setNewAnimal(Object.assign({}, newAnimal, { photo: filename })); 
+    setNewAnimal(Object.assign({}, newAnimal, { photo: filename }));
   };
 
   // posts data to api backend
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (image) {
@@ -86,7 +89,7 @@ const SearchPage = () => {
         .then(() => {
           submitNewAnimal(); // submit the form to backend after creating aws image
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     } else {
@@ -97,11 +100,11 @@ const SearchPage = () => {
   // post the new animal form to the backend
   const submitNewAnimal = () => {
     axios
-      .post('/api/v1/animals', { ...newAnimal })
-      .then(resp => {
+      .post("/api/v1/animals", { ...newAnimal })
+      .then((resp) => {
         history.push(`/animal/${resp.data.data.id}`);
       })
-      .catch(data => console.log('Error', data));
+      .catch((data) => console.log("Error", data));
   };
 
   // =================================================================================
@@ -113,7 +116,7 @@ const SearchPage = () => {
     setOpen(true);
   };
 
-  const handleClose = e => {
+  const handleClose = (e) => {
     e.preventDefault();
     setOpen(false);
   };
@@ -122,46 +125,52 @@ const SearchPage = () => {
   // RENDER
   // =================================================================================
   return (
-    <div className='search-wrapper'>
-      <div className='left-panel'>
-        <div className='left-panel-overview'>
-          <img
-            src='https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-            alt='profile-pic'
-          />
-          <h3>USER NAME</h3>
-        </div>
-        <div className='left-panel-writing'>NAME</div>
-      </div>
+    <main>
+      <div className="container emp-profile">
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="profile-img rounded float-start">
+                        <img src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt=""/>
+                    </div>
+                </div>
+                <div className="col-md-8">
+                  <div className="row mb-5">
+                    <button className='btn col ' onClick={handleClickOpen} id='Addnew'>Add new</button>
+                    <span className='search-bar col float-end'>
+                      <input type='search' placeholder='search animals' onChange={e => onChange(e)}>
+                      </input>
+                    </span>
+                    </div>
+                    <NewAnimalForm> open={open} handleClose={handleClose}  handleChange={handleChange} handleSubmit={handleSubmit} handleFile={handleFile} </NewAnimalForm>
+                  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                      {list}
+                  </div>
+                </div>
 
-      <div className='right-panel'>
-        <div className='right-panel-header'>
-          <button
-            variant='outlined'
-            color='primary'
-            onClick={handleClickOpen}
-            id='Addnew'
-          >
-            Add New
-          </button>
 
-          <input
-            type='search'
-            placeholder='search animals'
-            onChange={e => onChange(e)}
-          ></input>
-        </div>
-        <NewAnimalForm
-          open={open}
-          handleClose={handleClose}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          handleFile={handleFile}
-        />
-        <div className='right-panel-body'>{list}</div>
+            </div>
+
+            
+                  <div className="col-md-4">
+                    <div >
+                        <h5>
+                          Firstname Lastname
+                          </h5>
+                    </div>
+                      <div className="profile-work">
+                        <p>Bio</p>
+                        <p>nfiunfuiepwnfrepfhrewuphfrein</p>
+                        
+                      </div>
+
+            
+                 
+            </div>    
+                  
       </div>
-    </div>
+    </main>
   );
 };
 
 export default SearchPage;
+
