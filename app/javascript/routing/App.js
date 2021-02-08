@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect} from 'react';
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Animals from '../pages/animals/animals';
 import Animal from '../pages/animal/animal';
@@ -8,63 +9,18 @@ import Signup from '../pages/signup/signup';
 import SearchPage from '../pages/search/search';
 import NewAnimal from '../pages/new-animal/new-animal';
 import axios from 'axios';
+import fire from './firebaseConfig'
 
 export default class App extends Component {
-  constructor() {
-    super();
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [hasAccount, setHasAccount] = useState(false);
 
-    this.state = {
-      loggedInStatus: 'NOT_LOGGED_IN',
-      user: {},
-    };
 
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  checkLoginStatus() {
-    axios
-      .get('/logged_in', { withCredentials: true })
-      .then(response => {
-        if (
-          response.data.logged_in &&
-          this.state.loggedInStatus === 'NOT_LOGGED_IN'
-        ) {
-          this.setState({
-            loggedInStatus: 'LOGGED_IN',
-            user: response.data.user,
-          });
-        } else if (
-          !response.data.logged_in &
-          (this.state.loggedInStatus === 'LOGGED_IN')
-        ) {
-          this.setState({
-            loggedInStatus: 'NOT_LOGGED_IN',
-            user: {},
-          });
-        }
-      })
-      .catch(error => {
-        console.log('check login error', error);
-      });
-  }
-  componentDidMount() {
-    this.checkLoginStatus();
-  }
-
-  handleLogin(data) {
-    this.setState({
-      loggedInStatus: 'LOGGED_IN',
-      user: data.user,
-    });
-  }
-
-  handleLogout() {
-    this.setState({
-      loggedInStatus: 'NOT_LOGGED_IN',
-      user: {},
-    });
-  }
+    
 
   render() {
     return (
