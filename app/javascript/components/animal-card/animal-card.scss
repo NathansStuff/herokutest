@@ -1,22 +1,18 @@
+
 .card {
+    width:20em;
     display: flex;
-    margin: 20px 50px;   
-    border-style: solid;
+    flex-wrap:wrap;
+    border-radius:25px;
+    margin-top:190px;
+    margin-right:0;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(128, 135, 147, 0.902)), to(rgba(222, 220, 222, 0.807)), color-stop(.99,#fffffff2)); 
+    text-align:center;
+    padding:1em;
+    img{
+        width:15em;
+    }
 }
 
-.card-left,
-.card-right {
-    width: 100%;
-}
 
-.card-left {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
 
-.animal-photo img {
-    max-width: 300px;
-    max-height: 300px;
-}
