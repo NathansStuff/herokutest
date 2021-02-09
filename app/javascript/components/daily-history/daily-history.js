@@ -1,10 +1,4 @@
 import React from 'react';
-import './daily-history.scss';
-
-// const DailyHistory = props => {
-//   return <div></div>
-// }
-//   export default DailyHistory;
 
 const DailyHistory = props => {
   const history = props.attributes;
