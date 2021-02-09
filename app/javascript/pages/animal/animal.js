@@ -180,7 +180,6 @@ const Animal = props => {
     const id = props.match.params.id;
     const url = `/api/v1/animals/${id}`;
     setId(id);
-    console.log(SERVER_KEY)
 
     axios
       .get(url)
