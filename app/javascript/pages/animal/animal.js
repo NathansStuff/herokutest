@@ -181,7 +181,6 @@ const Animal = props => {
     const url = `/api/v1/animals/${id}`;
     setId(id);
     console.log(SERVER_KEY)
-    console.log(gon.SERVER_KEY)
 
     axios
       .get(url)

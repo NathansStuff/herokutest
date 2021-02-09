@@ -7,7 +7,6 @@ module Api
                 render json: AnimalSerializer.new(animals, options).serialized_json
             end
             def show 
-                gon.SERVER_KEY = process.env.GMAIL_USERNAME
                 animal ||= Animal.find_by(id: params[:id])
                 render json: AnimalSerializer.new(animal, options).serialized_json
             end
