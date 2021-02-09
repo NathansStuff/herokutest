@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import DisplayCard from '../../components/display-card/displayCard';
 import DailyUpdateForm from '../../components/daily-update-form/daily-update-form';
-import './animal.scss';
 import DailyHistory from '../../components/daily-history/daily-history';
 import { useHistory } from 'react-router-dom';
 import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
@@ -10,6 +9,7 @@ import config from '../../aws/config';
 import S3FileUpload from 'react-s3';
 
 const Animal = props => {
+  let SERVER_KEY
   // ================================================================================================
   // EDIT ANIMAL
   // ================================================================================================
@@ -180,6 +180,8 @@ const Animal = props => {
     const id = props.match.params.id;
     const url = `/api/v1/animals/${id}`;
     setId(id);
+    console.log(SERVER_KEY)
+    console.log(gon.SERVER_KEY)
 
     axios
       .get(url)

@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from 'react';
-import './home.scss';
 import Hero from '../../components/hero/hero';
 import About from '../../components/about/about';
 import Contact from '../../components/contact/contact';

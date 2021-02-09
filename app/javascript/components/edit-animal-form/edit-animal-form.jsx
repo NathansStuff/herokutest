@@ -1,5 +1,4 @@
 import React from 'react';
-import './edit-animal-form.scss';
 import Dialog from '@material-ui/core/Dialog';
 
 const EditAnimalForm = props => {

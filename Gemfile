@@ -6,7 +6,7 @@ group :test do
   gem 'simplecov', require: false
 end
 
-
+gem 'gon'
 
 gem 'aws-sdk-s3', require: false
 gem 'image_processing'

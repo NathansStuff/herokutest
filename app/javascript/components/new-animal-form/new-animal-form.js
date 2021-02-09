@@ -1,12 +1,5 @@
 import React from 'react';
-import './new-animal-form.scss';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 const NewAnimalForm = props => {
   if (!props.open) {
@@ -19,7 +12,7 @@ const NewAnimalForm = props => {
           <div className='new-animal-title'>
             <div></div>
             <h3>New Animal</h3>
-            <button onClick={props.handleClose}>X</button>
+            <button className='closeButton' onClick={props.handleClose}>X</button>
           </div>
           <form onSubmit={props.handleSubmit}>
             <div className='new-animal-field'>

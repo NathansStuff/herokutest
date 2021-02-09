@@ -1,0 +1,1 @@
+export const SERVER_KEY = process.env.GMAIL_USERNAME;

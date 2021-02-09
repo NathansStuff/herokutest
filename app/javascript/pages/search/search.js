@@ -1,12 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
-import "./search.scss";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import SearchCard from "../../components/search-card/search-card";
 import NewAnimalForm from "../../components/new-animal-form/new-animal-form";
-import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import S3FileUpload from "react-s3";
 import config from "../../aws/config";
