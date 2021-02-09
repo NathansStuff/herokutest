@@ -13,26 +13,25 @@ export default class App extends Component {
 
     this.state = {
       currentUser: null,
+      userAuth: null,
     };
   }
 
-  ubsubscribeFromAuth = null;
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.ubsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-
         userRef.onSnapshot(snapShot => {
           this.setState({
             currentUser: {
               id: snapShot.id,
               ...snapShot.data(),
             },
+            userAuth: userAuth,
           });
         });
-      } else {
-        this.setState({ currentUser: userAuth });
       }
     });
   }
@@ -42,6 +41,10 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.userAuth);
+    console.log('user auth&&');
+    console.log(this.state);
+    console.log('state&&');
     return (
       <div>
         <Fragment>
@@ -52,18 +55,38 @@ export default class App extends Component {
                 <HomePage />
               </Route>
               <Route exact path='/animal/:id' component={Animal} />
-              <Route
-                exact
-                path='/search'
-                component={SearchPage}
-                currentUser={this.state.currentUser}
-              />
-              <Route
-                exact
-                path='/signin'
-                component={SignInAndSignUp}
-                currentUser={this.state.currentUser}
-              />
+              {this.state.currentUser ? (
+                <Fragment>
+                  <Route
+                    exact
+                    path='/search'
+                    component={() => (
+                      <SearchPage
+                        displayName={this.state.currentUser.displayName}
+                        photoUrl={this.state.userAuth.photoURL}
+                        email={this.state.userAuth.email}
+                      />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path='/signin'
+                    component={() => (
+                      <SignInAndSignUp currentUser={this.state.currentUser} />
+                    )}
+                  />
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <Route exact path='/search' component={SearchPage} />
+                  <Route
+                    exact
+                    path='/signin'
+                    component={SignInAndSignUp}
+                    currentUser={this.state.currentUser}
+                  />
+                </Fragment>
+              )}
             </Switch>
           </BrowserRouter>
         </Fragment>
