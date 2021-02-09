@@ -27,8 +27,8 @@ const Hero = () => {
             <div className="text-white px-5">
               <h4 className="mb-3">Welcome!</h4>
               <p className='lead'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus laudantium in eaque cumque. Maiores laboriosam, esse quos hic inventore qui.</p>
-              <a href="#" className="btn btn-md text-white px-5 rounded-pill shadow-sm">Learn More</a>
-              <a className="btn text-light btn-lg px-3 signup" href="#!" role="button">Signup</a>
+              <a href="#" className="btn btn-md text-white px-5 rounded-pill shadow-sm ">Learn More</a>
+              <a className="btn text-light btn-lg px-3 bg-info signup" href="#!" role="button">Signup</a>
             </div>
         </div>
       </div>
