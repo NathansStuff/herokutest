@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './search.scss';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
@@ -7,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import SearchCard from '../../components/search-card/search-card';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import { useHistory } from 'react-router-dom';
-import background from 'images/aboutbackground.jpg';
+import background from '../../../assets/images/aboutbackground.jpg';
 
 const SearchPage = ({ displayName, photoUrl, email }) => {
   let history = useHistory(); // for browser navigation

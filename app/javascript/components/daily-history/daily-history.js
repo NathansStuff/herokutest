@@ -9,7 +9,6 @@ const DailyHistory = props => {
           history.attributes.drank_water ? '✅' : '❌';
         return (
           <tr>
-            <th>Date placeholder</th>
             <th>{history.attributes.weight}</th>
             <th>{ate_food}</th>
             <th>{drank_water}</th>
@@ -28,7 +27,6 @@ const DailyHistory = props => {
     <div>
       <table>
         <tr>
-          <th>Date</th>
           <th>Weight</th>
           <th>Ate Food</th>
           <th>Drank Water</th>
