@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import "./search.scss";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
@@ -8,6 +9,7 @@ import NewAnimalForm from "../../components/new-animal-form/new-animal-form";
 import { useHistory } from "react-router-dom";
 import S3FileUpload from "react-s3";
 import config from "../../aws/config";
+import background from 'images/aboutbackground.jpg';
 
 const SearchPage = () => {
   let history = useHistory(); // for browser navigation
@@ -122,9 +124,22 @@ const SearchPage = () => {
   // =================================================================================
   // RENDER
   // =================================================================================
+  const styles = {
+    main: {
+        height: '100vh',
+        width: '100vw',
+        backgroundSize: 'cover',
+        backgroundRepeat:'no-repeat',
+        backgroundImage: `url(${background})`
+  
+    }
+  };
+  
+  
+  
   return (
     <main>
-      <div className="container emp-profile ">
+      <div className="container emp-profile">
             <div className="row">
                 <div className="col-md-4 aboutme rounded">
                     <div className="profile-img  float-start mt-3 ">
