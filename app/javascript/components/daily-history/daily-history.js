@@ -8,34 +8,42 @@ const DailyHistory = props => {
         const drank_water =
           history.attributes.drank_water ? '✅' : '❌';
         return (
+          <tbody>
           <tr>
-            <th>Date placeholder</th>
-            <th>{history.attributes.weight}</th>
-            <th>{ate_food}</th>
-            <th>{drank_water}</th>
-            <th>{history.attributes.notes}</th>
-            <th>
-              <button onClick={props.handleDestroy.bind(this, history.id)}>
+            <th scope="row">Date placeholder</th>
+            <td>{history.attributes.weight}</td>
+            <td>{ate_food}</td>
+            <td>{drank_water}</td>
+            <td>{history.attributes.notes}</td>
+            <td>
+              <button className='btn btn-outline-'onClick={props.handleDestroy.bind(this, history.id)}>
                 Delete
               </button>
-            </th>
+            </td>
           </tr>
+          </tbody>
         );
       })
     : null;
 
   return (
+    
+    
+    
     <div>
-      <table>
+      <table className='table bg-white table-striped'>
+        <thead>
         <tr>
-          <th>Date</th>
-          <th>Weight</th>
-          <th>Ate Food</th>
-          <th>Drank Water</th>
-          <th>Notes</th>
-          <th>Delete</th>
+          <th scope='col'>Date</th>
+          <th scope='col'>Weight</th>
+          <th scope='col'>Ate Food</th>
+          <th scope='col'>Drank Water</th>
+          <th scope='col'>Notes</th>
+
         </tr>
+        </thead>
         <tbody>{list}</tbody>
+       
       </table>
     </div>
   );
