@@ -8,7 +8,6 @@ end
 
 gem 'gon'
 
-gem 'aws-sdk-s3', require: false
 gem 'image_processing'
 # gem 'active_storage_validations'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

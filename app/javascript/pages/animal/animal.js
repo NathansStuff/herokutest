@@ -5,11 +5,9 @@ import DailyUpdateForm from '../../components/daily-update-form/daily-update-for
 import DailyHistory from '../../components/daily-history/daily-history';
 import { useHistory } from 'react-router-dom';
 import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
-import config from '../../aws/config';
-import S3FileUpload from 'react-s3';
 
 const Animal = props => {
-  let SERVER_KEY
+  let SERVER_KEY;
   // ================================================================================================
   // EDIT ANIMAL
   // ================================================================================================
@@ -40,23 +38,13 @@ const Animal = props => {
 
   // posts data to api backend
   const handleEditAnimalFormSubmit = e => {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (image) {
-        // aws settings
-
-        S3FileUpload.uploadFile(image, config)
-          .then(() => {
-            submitEditAnimalForm(); // submit the form to backend after creating aws image
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      } else {
-        submitEditAnimalForm(); // submit the form to backend without doing aws stuff if there is no image
-      }
-    };
-  
+    if (image) {
+    } else {
+      submitEditAnimalForm(); // submit the form to backend without doing aws stuff if there is no image
+    }
+  };
 
   const submitEditAnimalForm = () => {
     const id = props.match.params.id;
@@ -209,23 +197,23 @@ const Animal = props => {
             animal={editAnimalForm}
             handleFile={handleFile}
           />
-          <div className = 'show-top'>
-          <div className='show-left'>
-            <DisplayCard
-              attributes={animal}
-              handleDestroy={handleAnimalDestroy}
-              id={id}
-              edit={handleEditAnimalOpen}
-            />
-          </div>
-          <div className='show-right'>
-            <DailyUpdateForm
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              attributes={animal}
-              daily_update={daily_update}
-            />
-          </div>
+          <div className='show-top'>
+            <div className='show-left'>
+              <DisplayCard
+                attributes={animal}
+                handleDestroy={handleAnimalDestroy}
+                id={id}
+                edit={handleEditAnimalOpen}
+              />
+            </div>
+            <div className='show-right'>
+              <DailyUpdateForm
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                attributes={animal}
+                daily_update={daily_update}
+              />
+            </div>
           </div>
           <div className='show-bot'>
             <DailyHistory

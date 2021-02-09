@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
-// import * as emailjs from 'emailjs-com';
+import * as emailjs from 'emailjs-com';
 import { Button } from 'reactstrap';
 
 class Contact extends Component {

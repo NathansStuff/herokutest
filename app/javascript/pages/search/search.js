@@ -7,8 +7,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import SearchCard from '../../components/search-card/search-card';
 import NewAnimalForm from '../../components/new-animal-form/new-animal-form';
 import { useHistory } from 'react-router-dom';
-import S3FileUpload from 'react-s3';
-import config from '../../aws/config';
 import background from 'images/aboutbackground.jpg';
 
 const SearchPage = ({ displayName, photoUrl, email }) => {
