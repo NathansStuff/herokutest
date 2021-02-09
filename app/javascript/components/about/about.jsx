@@ -26,11 +26,8 @@ const About = () => {
       <div className="row align-items-center h-100 p-5">
         <div className="col-lg-5 order-2 order-lg-1"><i className="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
           <h2 className="display-6 text-white">What is The Cybele Project?</h2>
-<<<<<<< HEAD
-          <p className="font-italic text-white mb-4">An application for rescue animals carers to track their charges care.</p>
-=======
+
           <p className="font-italic text-white mb-4">The Cybele Project is a web application designed to assist animal rescue groups. The app assists with tracking daily tasks such as weight, food and water consumption and notes. Each animal has its only profile page detailing name, age and microchip data .</p>
->>>>>>> ccf968c38f77306abc5e69d2918e446047fc21b0
         </div>
         <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src={pets} alt="" className="img-fluid  mb-lg-0 pets"/></div>
       </div>
