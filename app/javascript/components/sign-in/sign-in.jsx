@@ -17,7 +17,7 @@ class SignIn extends React.Component {
 
   redirectLoggedInUser() {
     let history = useHistory();
-    history.push('/search')
+    history.push('/search');
   }
 
   componentDidMount() {
@@ -27,7 +27,6 @@ class SignIn extends React.Component {
   componentDidUpdate() {
     console.log(this.state.currentUser);
   }
-
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -52,16 +51,19 @@ class SignIn extends React.Component {
   render() {
     return (
       <div className='container-fluid mx-auto'>
-      <div className="card">
-        <article className="card-body">
-          <a href="" className="float-right btn btn-outline-primary">Sign up</a>
-          <h4 className="card-title mb-4 mt-1">Sign in</h4>
-          <hr/>  
-          <form  onSubmit={this.handleSubmit}>
-              <div className="form-group">
+        <div className='card'>
+          <article className='card-body'>
+            <a href='' className='float-right btn btn-outline-primary'>
+              Sign up
+            </a>
+            <h4 className='card-title mb-4 mt-1'>Sign in</h4>
+            <hr />
+            <form onSubmit={this.handleSubmit}>
+              <div className='form-group'>
                 <FormInput
-                className='form-control'
+                  className='form-control'
                   name='email'
+                  id='email'
                   value={this.state.email}
                   required
                   type='email'
@@ -69,31 +71,41 @@ class SignIn extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="form-group">
+              <div className='form-group'>
                 <FormInput
-                className='form-control'
+                  className='form-control'
                   name='password'
+                  id='password'
                   value={this.state.password}
                   required
                   type='password'
                   placeholder='password'
                   onChange={this.handleChange}
                 />
-                </div>
-                <div className="form-group">
-                <CustomButton type='submit' value='Submit Form' className='btn sm btn-primary btn-block text-faded'> Submit </CustomButton>
-                <CustomButton className='btn btn-block btn-outline-primary'onClick={signInWithGoogle}>
+              </div>
+              <div className='form-group'>
+                <CustomButton
+                  type='submit'
+                  value='Submit Form'
+                  id='email-submit'
+                  className='btn sm btn-primary btn-block text-faded'
+                >
                   {' '}
-                  Sign in with Google{' '}
+                  Submit{' '}
                 </CustomButton>
-                </div>
-              </form>   
-      </article>
+                <CustomButton
+                  className='btn btn-block btn-outline-primary'
+                  id='google-sign-in'
+                  onClick={signInWithGoogle}
+                >
+                  Sign in with Google
+                </CustomButton>
+              </div>
+            </form>
+          </article>
+        </div>
       </div>
-    </div>
-
-    )
-    }}    
+    );
+  }
+}
 export default SignIn;
-
-    

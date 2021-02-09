@@ -82,8 +82,8 @@ export default class App extends Component {
                     exact
                     path='/signin'
                     component={SignInAndSignUp}
-                    currentUser={this.state.currentUser}
                   />
+                  <Route exact path='/search' component={SearchPage} />
                 </Fragment>
               )}
             </Switch>
