@@ -3,26 +3,37 @@ body{
     background-image: url("../../../assets/images/aboutbackground.jpg");
     background-repeat: no-repeat;
 }
-body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+
+
+.aboutme{
+    background: rgba(205, 166, 233, 0.5)
 }
 .emp-profile{
+    
     padding: 3%;
-    margin-top: 5%;
+    margin-top: 15%;
     margin-bottom: 3%;
-    border-radius: 0.5rem;
-    background: #fff;
+    box-shadow: 0 0 1rem 0 rgb(110, 119, 172); 
+    border-radius: 5px;
+    background-color: rgba(240, 240, 240, 0.048);
+    
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
+
 .profile-img{
     text-align: center;
 }
 .profile-img img{
     width: 70%;
-    height: 100%;
+    height: 70%;
+    border-radius: 15%;
 }
 
 .profile-head h5{
-    color: #333;
+    color: #fff;
 }
 .profile-head h6{
     color: #0062cc;
@@ -35,7 +46,7 @@ body{
 }
 .profile-work p{
     font-size: 12px;
-    color: #818182;
+    color: #fff;
     font-weight: 600;
     margin-top: 10%;
 }

@@ -126,45 +126,36 @@ const SearchPage = () => {
   // =================================================================================
   return (
     <main>
-      <div className="container emp-profile">
+      <div className="container emp-profile ">
             <div className="row">
-                <div className="col-md-4">
-                    <div className="profile-img rounded float-start">
-                        <img src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt=""/>
+                <div className="col-md-4 aboutme rounded">
+                    <div className="profile-img  float-start mt-3 ">
+                        <img className=" img-fluid" src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt=""/>
+                        <h5 className="display-5 mt-3 text-light">
+                          Firstname Lastname
+                          </h5>
+                          <div className="profile-work text-light">
+                        <p>Bio</p>
+                        <p>hofuwhfionweoifpnewoi</p>
+                        <p>Contact: </p>
+                        <p>Location: </p>
+                      </div>
                     </div>
+                    
                 </div>
                 <div className="col-md-8">
                   <div className="row mb-5">
-                    <button className='btn col ' onClick={handleClickOpen} id='Addnew'>Add new</button>
-                    <span className='search-bar col float-end'>
+                    <button className='btn btn-md  col text-light ' onClick={handleClickOpen} id='Addnew'>Add new</button>
+                    <span className='search-bar col float-end text-light'>
                       <input type='search' placeholder='search animals' onChange={e => onChange(e)}>
                       </input>
                     </span>
                     </div>
                     <NewAnimalForm> open={open} handleClose={handleClose}  handleChange={handleChange} handleSubmit={handleSubmit} handleFile={handleFile} </NewAnimalForm>
-                  <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                  <div className="row ml-3 container-fluid row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 text-white">
                       {list}
                   </div>
-                </div>
-
-
-            </div>
-
-            
-                  <div className="col-md-4">
-                    <div >
-                        <h5>
-                          Firstname Lastname
-                          </h5>
-                    </div>
-                      <div className="profile-work">
-                        <p>Bio</p>
-                        <p>nfiunfuiepwnfrepfhrewuphfrein</p>
-                        
-                      </div>
-
-            
-                 
+                </div>     
             </div>    
                   
       </div>
