@@ -4,8 +4,6 @@ import SignUp from '../../components/sign-up/sign-up';
 import { useHistory } from 'react-router-dom';
 
 const SignInAndSignUp = ({ currentUser }) => {
-  console.log(currentUser);
-  console.log('signinpage');
   let history = useHistory();
   if (currentUser) {
     history.push('/search');

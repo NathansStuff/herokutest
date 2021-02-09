@@ -13,7 +13,6 @@ import background from 'images/aboutbackground.jpg';
 
 const SearchPage = ({ displayName, photoUrl, email }) => {
   let history = useHistory(); // for browser navigation
-
   // =================================================================================
   // POPULATE ANIMALS
   // =================================================================================
@@ -24,9 +23,10 @@ const SearchPage = ({ displayName, photoUrl, email }) => {
       .then(resp => {
         setAnimals(resp.data.data);
         console.log(photoUrl);
+        console.log('************************************************************************************************')
       })
       .catch(resp => console.log(resp), [animals.length]);
-  }, []);
+  }, [displayName]);
 
   // =================================================================================
   // SEARCH BOX
