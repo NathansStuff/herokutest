@@ -44,10 +44,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.userAuth);
-    console.log('user auth&&');
-    console.log(this.state);
-    console.log('state&&');
     return (
       <div>
         <Fragment>
@@ -57,7 +53,6 @@ export default class App extends Component {
               <Route exact path='/'>
                 <HomePage />
               </Route>
-              <Route exact path='/animal/:id' component={Animal} />
               {this.state.currentUser ? (
                 <Fragment>
                   <Route
@@ -78,6 +73,7 @@ export default class App extends Component {
                       <SignInAndSignUp currentUser={this.state.currentUser} />
                     )}
                   />
+                  <Route exact path='/animal/:id' component={Animal} />
                 </Fragment>
               ) : (
                 <Fragment>
