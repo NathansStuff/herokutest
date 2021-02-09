@@ -42,22 +42,16 @@ const NavBar = ({ currentUser }) => {
           </button>
           <div className='collapse navbar-collapse' id='navbarResponsive'>
             <ul className='navbar-nav ml-auto'>
-              <li className='nav-item '>
-                <a className='nav-link' href='#'>
-                  Home
-                  <span className='sr-only'>(current)</span>
-                </a>
-              </li>
-              <li className='nav-item '>
-                <a className='nav-link' href='#'>
-                  About
-                </a>
-              </li>
-              <li className='nav-item pl-2'>
-                <a className='nav-link' href='#'>
-                  Contact
-                </a>
-              </li>
+            <li className="nav-item ">
+            <a className="nav-link" href="#about">About</a>
+          </li>
+          <li className="nav-item pl-2">
+            <a className="nav-link" href="#contact">Contact</a>
+          </li>
+          
+          <li className="nav-item pl-2">
+            <a className="nav-link" href="/search">Profile</a>
+          </li>
               {currentUser ? (
                 <li className='nav-item pl-2'>
                   <a
@@ -82,6 +76,7 @@ const NavBar = ({ currentUser }) => {
       </nav>
     </React.Fragment>
   );
+
 };
 
 export default NavBar;

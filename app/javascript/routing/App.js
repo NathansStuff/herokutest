@@ -7,6 +7,7 @@ import SignInAndSignUp from '../pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import { auth, createUserProfileDocument } from '../firebase/firebase';
 import NavBar from '../components/navbar/navbar';
 
+
 export default class App extends Component {
   constructor() {
     super();
@@ -44,19 +45,16 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Fragment>
-          <NavBar currentUser={this.state.currentUser} />
-          <BrowserRouter>
-            <Switch>
-              <Route exact path='/'>
-                <HomePage />
-              </Route>
-              <Route exact path='/animal/:id' component={Animal} />
-              <Route exact path='/search' component={SearchPage} />
-              <Route exact path='/signin' component={SignInAndSignUp} />
-            </Switch>
-          </BrowserRouter>
-        </Fragment>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/'>
+              <HomePage />
+            </Route>
+            <Route exact path='/animal/:id' component={Animal} />
+            <Route exact path='/search' component={SearchPage} />
+            
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
