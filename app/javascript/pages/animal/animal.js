@@ -7,9 +7,9 @@ import { useHistory } from 'react-router-dom';
 import EditAnimalForm from '../../components/edit-animal-form/edit-animal-form';
 import config from '../../aws/config';
 import S3FileUpload from 'react-s3';
-import SERVER_KEY from '../../aws/server_key'
 
 const Animal = props => {
+  let SERVER_KEY
   // ================================================================================================
   // EDIT ANIMAL
   // ================================================================================================
